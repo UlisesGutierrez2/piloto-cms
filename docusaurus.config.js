@@ -62,9 +62,7 @@ const config = {
             const documentPath = docPath.replace(/\.mdx?$/, '');
                 
                 // Redirigimos al usuario a la interfaz de Decap CMS exacta para este archivo
-            return `/admin/#/collections/documentacion/entries/${documentPath}`;
-          },
-              // 👆 FIN DE LA MODIFICACIÓN 👆
+            return `https://guileless-lily-7235ad.netlify.app/admin/#/collections/documentacion/entries/${documentPath}`;
         },
         blog: {
           showReadingTime: true,
