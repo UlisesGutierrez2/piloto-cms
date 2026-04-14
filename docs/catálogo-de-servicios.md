@@ -3,7 +3,7 @@ id: catalogo-servicios-devsecops
 title: Catálogo de Servicios
 sidebar_label: Catálogo de Servicios
 ---
-![]()
+
 
 # Catálogo de Tareas DevSecOps 🛠️
 
