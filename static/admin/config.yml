@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Configuración de imágenes para Docusaurus
+media_folder: "static/img"
+public_folder: "/img"
+
+# Definición de la "Cápsula" para DevSecOps
+collections:
+  - name: "documentacion"
+    label: "Guías DevSecOps"
+    folder: "docs"
+    create: true
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Cuerpo del texto", name: "body", widget: "markdown"}
