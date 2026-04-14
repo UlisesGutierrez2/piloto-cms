@@ -47,22 +47,17 @@ const config = {
     locales: ['en'],
   },
 
-  presets: [
+ presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // 👇 MODIFICAMOS EL EDIT URL 👇
           editUrl: ({versionDocsDirPath, docPath}) => {
-                // Quitamos la extensión .md o .mdx del nombre del archivo
             const documentPath = docPath.replace(/\.mdx?$/, '');
-                
-                // Redirigimos al usuario a la interfaz de Decap CMS exacta para este archivo
             return `https://guileless-lily-7235ad.netlify.app/admin/#/collections/documentacion/entries/${documentPath}`;
+          },
         },
         blog: {
           showReadingTime: true,
@@ -70,11 +65,7 @@ const config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
+          editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -85,6 +76,7 @@ const config = {
       }),
     ],
   ],
+
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
