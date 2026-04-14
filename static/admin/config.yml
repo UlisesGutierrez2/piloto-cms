@@ -1,6 +1,11 @@
 backend:
   name: git-gateway
   branch: main
+  
+# ¡Esta es la línea mágica para los PRs!
+publish_mode: editorial_workflow
+
+media_folder: "static/img"
 
 # Configuración de imágenes para Docusaurus
 media_folder: "static/img"
