@@ -3,7 +3,7 @@ id: catalogo-servicios-devsecops
 title: Catálogo de Servicios
 sidebar_label: Catálogo de Servicios
 ---
-![](/img/captura-de-pantalla-2024-06-11-114134.png)
+![]()
 
 # Catálogo de Tareas DevSecOps 🛠️
 
