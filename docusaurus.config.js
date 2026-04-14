@@ -87,7 +87,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'My Site',
+        title: 'Mi Portal', // Aquí también puedes cambiar el nombre general del sitio
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -97,7 +97,8 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            // 👇 AQUI CAMBIAMOS EL NOMBRE DEL BOTÓN SUPERIOR 👇
+            label: 'Documentación', 
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
