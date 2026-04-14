@@ -65,7 +65,7 @@ const config = {
             return `/admin/#/collections/documentacion/entries/${documentPath}`;
           },
               // 👆 FIN DE LA MODIFICACIÓN 👆
-        }
+        },
         blog: {
           showReadingTime: true,
           feedOptions: {
