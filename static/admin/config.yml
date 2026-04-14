@@ -1,27 +1,24 @@
 backend:
   name: git-gateway
   branch: main
-  
-# ¡Esta es la línea mágica para los PRs!
+
 publish_mode: editorial_workflow
 
 media_folder: "static/img"
-
-# Configuración de imágenes para Docusaurus
-media_folder: "static/img"
 public_folder: "/img"
 
-# Definición de la "Cápsula" para DevSecOps
 collections:
   - name: "documentacion"
     label: "Guías DevSecOps"
     folder: "docs"
     create: true
-    # ¡Estas dos líneas activan la magia de las carpetas!
     nested:
-      depth: 3 # Te permite crear hasta 3 niveles de subcarpetas
+      depth: 3
     meta:
-      path: { widget: string, label: 'Path', index_file: 'index' } # <- EL MOTOR DE RUTAS
+      path:
+        widget: string
+        label: 'Path'
+        index_file: 'index'
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Cuerpo del texto", name: "body", widget: "markdown"}
