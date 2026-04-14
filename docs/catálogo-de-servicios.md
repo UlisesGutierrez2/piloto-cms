@@ -3,8 +3,6 @@ id: catalogo-servicios-devsecops
 title: Catálogo de Servicios
 sidebar_label: Catálogo de Servicios
 ---
-![]()
-
 # Catálogo de Tareas DevSecOps 🛠️
 
 ## Objetivo ✅
@@ -110,7 +108,7 @@ Para acceder a la documentación detallada, especificaciones técnicas y actuali
 | Obtener Logs de Liferay (Dev, Cert, Prod) | 2 *        | 4 *               | 2 *              |
 | Pases Manuales Liferay (Dev, Cert, Prod)  | 1 *        | 2 *               | 1 *              |
 
-:::info Nota
+:::info Nota:
 
 * Aún los valores están en estado de revisión por parte del equipo para obtener un valor ajustado a la capacidad del equipo.
   :::
