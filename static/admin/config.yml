@@ -12,6 +12,9 @@ collections:
     label: "Guías DevSecOps"
     folder: "docs"
     create: true
+    # ¡Estas dos líneas activan la magia de las carpetas!
+    nested:
+      depth: 3 # Te permite crear hasta 3 niveles de subcarpetas
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Cuerpo del texto", name: "body", widget: "markdown"}
