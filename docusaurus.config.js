@@ -56,7 +56,7 @@ const config = {
           sidebarPath: './sidebars.js',
           editUrl: ({versionDocsDirPath, docPath}) => {
             const documentPath = docPath.replace(/\.mdx?$/, '');
-            return `https://guileless-lily-7235ad.netlify.app/admin/#/collections/documentacion/entries/${documentPath}`;
+            return `https://silly-boba-bbdc37.netlify.app//admin/#/collections/documentacion/entries/${documentPath}`;
           },
         },
         blog: {
