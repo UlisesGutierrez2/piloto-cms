@@ -22,41 +22,45 @@
   </script>
 
   <script>
-    // 1. BOTÓN DE YOUTUBE (AHORA ACEPTA LA URL COMPLETA)
+    // BOTÓN ÚNICO DE VIDEO (YOUTUBE + LOCAL)
     CMS.registerEditorComponent({
-      id: "youtube",
-      label: "Video de YouTube",
-      fields: [{name: "url", label: "Pega el enlace de YouTube completo", widget: "string"}],
-      pattern: /^<iframe.*?src="https:\/\/www\.youtube\.com\/embed\/(.*?)".*?><\/iframe>$/,
-      fromBlock: function(match) { return { url: match[1] }; },
+      id: "video",
+      label: "Insertar Video",
+      // Le mostramos los dos campos al usuario, pero ambos son opcionales
+      fields: [
+        {name: "youtube_url", label: "Opción A: Pega el enlace de YouTube", widget: "string", required: false},
+        {name: "local_file", label: "Opción B: Sube un video MP4", widget: "file", required: false}
+      ],
+      // Regex combinada para leer tanto iframes como videos locales existentes
+      pattern: /^(?:<iframe.*?src="https:\/\/www\.youtube\.com\/embed\/([^"]+)".*?><\/iframe>|<video.*?><source src="([^"]+)".*?\/><\/video>)$/,
+      fromBlock: function(match) {
+        return {
+          youtube_url: match[1] ? 'https://www.youtube.com/watch?v=' + match[1] : '',
+          local_file: match[2] || ''
+        };
+      },
       toBlock: function(obj) {
-        // Magia: Extrae automáticamente el ID de cualquier formato de URL de YouTube
-        var match = obj.url.match(/(?:youtu\.be\/|youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=))([^"&?\/\s]{11})/i);
-        var videoId = match ? match[1] : obj.url;
-        
-        return '<iframe width="100%" height="400" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+        // Si el usuario llenó el campo de YouTube:
+        if (obj.youtube_url) {
+          var match = obj.youtube_url.match(/(?:youtu\.be\/|youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=))([^"&?\/\s]{11})/i);
+          var videoId = match ? match[1] : obj.youtube_url;
+          return '<iframe width="100%" height="400" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+        } 
+        // Si el usuario llenó el campo de Video Local:
+        else if (obj.local_file) {
+          return '<video width="100%" controls><source src="' + obj.local_file + '" type="video/mp4" />Tu navegador no soporta el tag de video.</video>';
+        } 
+        return '';
       },
       toPreview: function(obj) {
-        var match = obj.url.match(/(?:youtu\.be\/|youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=))([^"&?\/\s]{11})/i);
-        var videoId = match ? match[1] : obj.url;
-        
-        return '<img src="https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg" style="width:100%; max-width:560px;"/>';
-      }
-    });
-
-    // 2. BOTÓN DE VIDEO LOCAL (MP4) CON LA CORRECCIÓN MDX (/>)
-    CMS.registerEditorComponent({
-      id: "video_local",
-      label: "Video Local (MP4)",
-      fields: [{name: "src", label: "Sube o selecciona un video", widget: "file"}],
-      pattern: /^<video.*?src="(.*?)".*?><\/video>$/,
-      fromBlock: function(match) { return { src: match[1] }; },
-      toBlock: function(obj) {
-        // Etiqueta source cerrada con /> para evitar errores de compilación en Docusaurus
-        return '<video width="100%" controls><source src="' + obj.src + '" type="video/mp4" />Tu navegador no soporta el tag de video.</video>';
-      },
-      toPreview: function(obj) {
-        return '<video width="100%" controls><source src="' + obj.src + '" type="video/mp4" /></video>';
+        if (obj.youtube_url) {
+          var match = obj.youtube_url.match(/(?:youtu\.be\/|youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=))([^"&?\/\s]{11})/i);
+          var videoId = match ? match[1] : obj.youtube_url;
+          return '<img src="https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg" style="width:100%; max-width:560px;"/>';
+        } else if (obj.local_file) {
+          return '<video width="100%" controls><source src="' + obj.local_file + '" type="video/mp4" /></video>';
+        }
+        return '<em>Completa la Opción A o la Opción B para ver la vista previa.</em>';
       }
     });
   </script>
