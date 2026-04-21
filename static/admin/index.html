@@ -20,5 +20,39 @@
       });
     }
   </script>
+
+  <script>
+    // 1. BOTÓN DE YOUTUBE
+    CMS.registerEditorComponent({
+      id: "youtube",
+      label: "Video de YouTube",
+      fields: [{name: "id", label: "ID del Video (ej: dQw4w9WgXcQ)", widget: "string"}],
+      pattern: /^<iframe.*?src="https:\/\/www\.youtube\.com\/embed\/(.*?)".*?><\/iframe>$/,
+      fromBlock: function(match) { return { id: match[1] }; },
+      toBlock: function(obj) {
+        return '<iframe width="100%" height="400" src="https://www.youtube.com/embed/' + obj.id + '" frameborder="0" allowfullscreen></iframe>';
+      },
+      toPreview: function(obj) {
+        return '<img src="https://img.youtube.com/vi/' + obj.id + '/hqdefault.jpg" style="width:100%; max-width:560px;"/>';
+      }
+    });
+
+    // 2. BOTÓN DE VIDEO LOCAL (MP4)
+    CMS.registerEditorComponent({
+      id: "video_local",
+      label: "Video Local (MP4)",
+      // Usamos el widget "file" para abrir la galería de medios de Decap
+      fields: [{name: "src", label: "Sube o selecciona un video", widget: "file"}],
+      pattern: /^<video.*?src="(.*?)".*?><\/video>$/,
+      fromBlock: function(match) { return { src: match[1] }; },
+      toBlock: function(obj) {
+        // Generamos la etiqueta de reproductor nativo de HTML5
+        return '<video width="100%" controls><source src="' + obj.src + '" type="video/mp4">Tu navegador no soporta el tag de video.</video>';
+      },
+      toPreview: function(obj) {
+        return '<video width="100%" controls><source src="' + obj.src + '" type="video/mp4"></video>';
+      }
+    });
+  </script>
 </body>
 </html>
