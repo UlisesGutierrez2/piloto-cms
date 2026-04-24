@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CMS Panel - Editor</title>
+  <title>CMS Panel - DevOps</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,114 +13,79 @@
 
   <style>
     /* =========================================================
-       DEVOPS DARK THEME PARA DECAP CMS
+       DEVOPS DARK THEME (VERSIÓN CORREGIDA Y AGRESIVA)
        ========================================================= */
-    
     :root {
-      --bg-main: #0d1117;       /* Fondo global (Estilo GitHub Dark) */
-      --bg-panel: #161b22;      /* Fondo de los paneles */
-      --border-color: #30363d;  /* Bordes sutiles */
-      --text-main: #c9d1d9;     /* Texto claro */
-      --text-muted: #8b949e;    /* Texto secundario/Labels */
-      --accent-blue: #58a6ff;   /* Azul para focus y botones */
-      --accent-green: #238636;  /* Verde para "Published" */
+      --bg-main: #0d1117;       
+      --bg-panel: #161b22;      
+      --border-color: #30363d;  
+      --text-main: #c9d1d9;     
+      --text-muted: #8b949e;    
+      --accent-blue: #58a6ff;   
     }
 
-    /* 1. Reset Global y Fuentes */
     body, #nc-root, .nc-app-container { 
       font-family: 'Inter', sans-serif !important; 
       background-color: var(--bg-main) !important;
       color: var(--text-main) !important;
     }
 
-    /* 2. Barra de Navegación Superior */
+    /* 1. NAVEGACIÓN SUPERIOR */
     .nc-app-header-container, .nc-entryEditor-header {
       background-color: var(--bg-panel) !important;
       border-bottom: 1px solid var(--border-color) !important;
     }
-    .nc-app-header-container a, .nc-entryEditor-header span { color: var(--text-main) !important; }
 
-    /* 3. Panel Izquierdo (Controles y Formulario) */
-    .nc-entryEditor-controlPane { 
-      background-color: var(--bg-main) !important; 
-      border: none !important;
-    }
-
-    /* 4. Panel Derecho (Previsualización) */
+    /* 2. PANELES PRINCIPALES */
+    .nc-entryEditor-controlPane { background-color: var(--bg-main) !important; }
     .nc-entryEditor-previewPane { 
       background-color: var(--bg-panel) !important; 
       border-left: 1px solid var(--border-color) !important;
-      color: var(--text-main) !important;
-    }
-    
-    /* Ajuste para que la preview no se vea blanca como un parche */
-    .nc-entryEditor-previewPane iframe {
-       background-color: var(--bg-main) !important;
-       border-radius: 8px;
     }
 
-    /* 5. Etiquetas de los campos (PATH, TÍTULO, etc.) */
-    .nc-controlPane-widget label {
+    /* 3. 🔥 FIX: QUITAR FONDOS BLANCOS DE LAS ETIQUETAS 🔥 */
+    /* Apuntamos a todos los wrappers y etiquetas para forzar la transparencia */
+    .nc-controlPane-widget > div,
+    .nc-controlPane-widget label,
+    .nc-controlPane-widget label span,
+    div[class*="FieldLabel"] {
+      background-color: transparent !important;
       color: var(--text-muted) !important;
       font-weight: 600 !important;
-      letter-spacing: 0.5px !important;
-      font-size: 12px !important;
+      font-size: 13px !important;
     }
 
-    /* 6. Inputs (Cajas de texto) */
-    .nc-controlPane-widget input,
-    .nc-controlPane-widget textarea,
-    div[class*="css-"] /* Apunta a los wrappers internos de React */ {
+    /* 4. 🔥 FIX: CAJAS DE TEXTO OSCURAS 🔥 */
+    /* Usamos los selectores directos de HTML para ganarle a las clases de React */
+    input, textarea, [contenteditable="true"], div[data-slate-editor="true"] {
       background-color: var(--bg-panel) !important;
       color: var(--text-main) !important;
       border: 1px solid var(--border-color) !important;
       border-radius: 6px !important;
-      transition: all 0.2s ease-in-out;
+      padding: 10px !important;
     }
-
-    .nc-controlPane-widget input:focus,
-    .nc-controlPane-widget textarea:focus {
+    input:focus, textarea:focus, [contenteditable="true"]:focus {
       border-color: var(--accent-blue) !important;
-      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2) !important;
       outline: none !important;
+      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2) !important;
     }
 
-    /* 7. La Barra de Herramientas (Menú de formato) */
+    /* 5. TOOLBAR DEL EDITOR ENRIQUECIDO */
     .nc-toolbar-toolbar {
       background-color: var(--bg-panel) !important;
-      border: 1px solid var(--border-color) !important;
-      border-bottom: none !important; /* Une la barra con el textarea */
-      border-radius: 6px 6px 0 0 !important;
-      padding: 8px !important;
+      border-bottom: 1px solid var(--border-color) !important;
     }
-    
-    /* Botones dentro del menú de formato */
-    .nc-toolbar-toolbar button {
-      color: var(--text-muted) !important;
-      border-radius: 4px !important;
-    }
-    .nc-toolbar-toolbar button:hover {
-      background-color: var(--border-color) !important;
-      color: var(--text-main) !important;
-    }
+    .nc-toolbar-toolbar button { color: var(--text-muted) !important; }
+    .nc-toolbar-toolbar button:hover { background-color: var(--border-color) !important; color: var(--text-main) !important; }
 
-    /* 8. Botones principales (Save, Publish) */
-    button { text-transform: none !important; font-weight: 500 !important; }
-    
-    /* Botón Guardar */
-    .nc-entryEditor-header button:first-child {
-      background-color: var(--bg-panel) !important;
-      border: 1px solid var(--border-color) !important;
-      color: var(--text-main) !important;
-    }
-    /* Botón Publicar/Estado */
+    /* 6. BOTONES GLOBALES */
+    button { text-transform: none !important; border-radius: 6px !important; }
     .nc-app-header-publishBtn, div[class*="DropdownButton"] button {
       background-color: var(--accent-blue) !important;
       color: white !important;
       border: none !important;
     }
   </style>
-  
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
@@ -136,7 +101,25 @@
       });
     }
 
-    // BOTÓN ÚNICO DE VIDEO (YOUTUBE + LOCAL)
+    // 🚀 🔥 FIX: MODO OSCURO PARA LA VISTA PREVIA (IFRAME) 🔥 🚀
+    // Inyectamos CSS directamente dentro del iFrame de Decap para arreglar el contraste
+    CMS.registerPreviewStyle(`
+      body {
+        background-color: #161b22;
+        color: #c9d1d9;
+        font-family: 'Inter', sans-serif;
+        padding: 20px;
+        line-height: 1.6;
+      }
+      h1, h2, h3, h4 { color: #ffffff; border-bottom: 1px solid #30363d; padding-bottom: 8px; }
+      strong, b { color: #58a6ff; }
+      a { color: #58a6ff; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      code { background-color: #0d1117; padding: 2px 6px; border-radius: 4px; color: #ff7b72; }
+      blockquote { border-left: 4px solid #30363d; color: #8b949e; padding-left: 10px; }
+    `, { raw: true });
+
+    // TU BOTÓN ÚNICO DE VIDEO (Intacto)
     CMS.registerEditorComponent({
       id: "video",
       label: "Insertar Video",
