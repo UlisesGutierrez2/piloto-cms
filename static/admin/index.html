@@ -7,83 +7,107 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <style>
     /* =========================================================
-       DEVOPS DARK THEME (VERSIÓN CORREGIDA Y AGRESIVA)
+       TEMA ENTERPRISE (CIRUGÍA DE INTERFAZ)
        ========================================================= */
+    
     :root {
-      --bg-main: #0d1117;       
-      --bg-panel: #161b22;      
-      --border-color: #30363d;  
-      --text-main: #c9d1d9;     
-      --text-muted: #8b949e;    
-      --accent-blue: #58a6ff;   
+      --bg-page: #f9fafb;       
+      --bg-panel: #ffffff;      
+      --border-color: #d1d5db;  
+      --text-main: #111827;     
+      --text-muted: #6b7280;    
+      --accent-blue: #2563eb;   
     }
 
     body, #nc-root, .nc-app-container { 
       font-family: 'Inter', sans-serif !important; 
-      background-color: var(--bg-main) !important;
-      color: var(--text-main) !important;
+      background-color: var(--bg-page) !important;
     }
 
-    /* 1. NAVEGACIÓN SUPERIOR */
-    .nc-app-header-container, .nc-entryEditor-header {
-      background-color: var(--bg-panel) !important;
-      border-bottom: 1px solid var(--border-color) !important;
-    }
-
-    /* 2. PANELES PRINCIPALES */
-    .nc-entryEditor-controlPane { background-color: var(--bg-main) !important; }
-    .nc-entryEditor-previewPane { 
-      background-color: var(--bg-panel) !important; 
-      border-left: 1px solid var(--border-color) !important;
-    }
-
-    /* 3. 🔥 FIX: QUITAR FONDOS BLANCOS DE LAS ETIQUETAS 🔥 */
-    /* Apuntamos a todos los wrappers y etiquetas para forzar la transparencia */
-    .nc-controlPane-widget > div,
+    /* --- 1. ETIQUETAS (LABELS) MODERNAS --- */
+    /* Destruimos el diseño viejo flotante y las ponemos arriba limpias */
     .nc-controlPane-widget label,
-    .nc-controlPane-widget label span,
     div[class*="FieldLabel"] {
-      background-color: transparent !important;
+      position: static !important; /* Quita el texto montado en el borde */
+      display: block !important;
+      background: transparent !important;
       color: var(--text-muted) !important;
       font-weight: 600 !important;
-      font-size: 13px !important;
+      font-size: 11px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.05em !important;
+      margin-bottom: 8px !important;
+      padding: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
     }
 
-    /* 4. 🔥 FIX: CAJAS DE TEXTO OSCURAS 🔥 */
-    /* Usamos los selectores directos de HTML para ganarle a las clases de React */
-    input, textarea, [contenteditable="true"], div[data-slate-editor="true"] {
+    /* --- 2. CAMPOS DE TEXTO (INPUTS) --- */
+    input, textarea, div[data-slate-editor="true"] {
       background-color: var(--bg-panel) !important;
-      color: var(--text-main) !important;
       border: 1px solid var(--border-color) !important;
-      border-radius: 6px !important;
-      padding: 10px !important;
+      border-radius: 8px !important;
+      padding: 14px !important;
+      font-size: 14px !important;
+      color: var(--text-main) !important;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+      margin-bottom: 24px !important; /* Espacio entre cada campo */
     }
-    input:focus, textarea:focus, [contenteditable="true"]:focus {
+    input:focus, textarea:focus, div[data-slate-editor="true"]:focus {
       border-color: var(--accent-blue) !important;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
       outline: none !important;
-      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2) !important;
     }
 
-    /* 5. TOOLBAR DEL EDITOR ENRIQUECIDO */
+    /* --- 3. LA BARRA DE TAREAS (TOOLBAR) INTEGRADA --- */
+    /* El contenedor de la barra */
     .nc-toolbar-toolbar {
+      background-color: #f3f4f6 !important;
+      border: 1px solid var(--border-color) !important;
+      border-bottom: none !important; /* Para que se una con el texto abajo */
+      border-radius: 8px 8px 0 0 !important; /* Redondeado solo arriba */
+      padding: 8px 12px !important;
+      margin-bottom: 0 !important; /* Se pega a la caja de texto */
+    }
+    /* La caja de texto del editor principal (quitamos bordes de arriba para unirla a la barra) */
+    .nc-controlPane-widget[data-slate-editor="true"],
+    div[class*="MarkdownControl"] > div:last-child {
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+      margin-top: 0 !important;
+    }
+    /* Iconos de la barra */
+    .nc-toolbar-toolbar button {
+      color: #4b5563 !important;
+      border-radius: 4px !important;
+    }
+    .nc-toolbar-toolbar button:hover {
+      background-color: #e5e7eb !important;
+      color: #111827 !important;
+    }
+
+    /* --- 4. TOP BAR Y BOTONES --- */
+    .nc-entryEditor-header {
+      padding: 16px 24px !important;
       background-color: var(--bg-panel) !important;
       border-bottom: 1px solid var(--border-color) !important;
     }
-    .nc-toolbar-toolbar button { color: var(--text-muted) !important; }
-    .nc-toolbar-toolbar button:hover { background-color: var(--border-color) !important; color: var(--text-main) !important; }
-
-    /* 6. BOTONES GLOBALES */
-    button { text-transform: none !important; border-radius: 6px !important; }
+    button { 
+      border-radius: 6px !important; 
+      font-weight: 500 !important;
+      padding: 8px 16px !important;
+    }
     .nc-app-header-publishBtn, div[class*="DropdownButton"] button {
       background-color: var(--accent-blue) !important;
       color: white !important;
       border: none !important;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
     }
   </style>
 </head>
@@ -101,25 +125,7 @@
       });
     }
 
-    // 🚀 🔥 FIX: MODO OSCURO PARA LA VISTA PREVIA (IFRAME) 🔥 🚀
-    // Inyectamos CSS directamente dentro del iFrame de Decap para arreglar el contraste
-    CMS.registerPreviewStyle(`
-      body {
-        background-color: #161b22;
-        color: #c9d1d9;
-        font-family: 'Inter', sans-serif;
-        padding: 20px;
-        line-height: 1.6;
-      }
-      h1, h2, h3, h4 { color: #ffffff; border-bottom: 1px solid #30363d; padding-bottom: 8px; }
-      strong, b { color: #58a6ff; }
-      a { color: #58a6ff; text-decoration: none; }
-      a:hover { text-decoration: underline; }
-      code { background-color: #0d1117; padding: 2px 6px; border-radius: 4px; color: #ff7b72; }
-      blockquote { border-left: 4px solid #30363d; color: #8b949e; padding-left: 10px; }
-    `, { raw: true });
-
-    // TU BOTÓN ÚNICO DE VIDEO (Intacto)
+    // BOTÓN ÚNICO DE VIDEO
     CMS.registerEditorComponent({
       id: "video",
       label: "Insertar Video",
