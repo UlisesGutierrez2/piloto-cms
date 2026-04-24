@@ -4,23 +4,85 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CMS Panel - DevOps</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <style>
-    /* Mejoras estéticas para el editor */
-    .nc-app-container { font-family: 'Inter', sans-serif !important; }
-    .nc-entryEditor-controlPane { 
-      background-color: #f8f9fa !important; 
-      border-radius: 8px !important;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1) !important;
-    }
-    .nc-controlPane-widget { margin-bottom: 25px !important; }
-    button { border-radius: 4px !important; text-transform: none !important; }
-  </style>
   
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
+  <style>
+    /* VARIABLES GLOBALES (Tipografía y Sombras modernas) */
+    :root {
+      --modern-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --panel-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    /* APLICAMOS LA FUENTE A TODA LA APP */
+    body, #nc-root { font-family: var(--modern-font) !important; }
+
+    /* MEJORAMOS EL PANEL DE EDICIÓN (Bordes redondeados, sombras suaves) */
+    .nc-entryEditor-editorPane { 
+      background-color: #f9fafb !important; 
+      border-radius: 12px !important;
+      border: 1px solid #e5e7eb !important;
+      padding: 30px !important;
+      box-shadow: var(--panel-shadow) !important;
+    }
+
+    /* ESTILIZAMOS LAS ETIQUETAS (LABELS) DE LOS CAMPOS */
+    .nc-controlPane-widget label {
+      font-weight: 600 !important;
+      color: #374151 !important;
+      margin-bottom: 8px !important;
+      font-size: 14px !important;
+      text-transform: none !important; /* Quitamos las mayúsculas automáticas */
+    }
+
+    /* ESTILIZAMOS LOS CAMPOS DE ENTRADA (Inputs, Textareas) */
+    .nc-controlPane-widget input,
+    .nc-controlPane-widget textarea,
+    .nc-controlPane-widget div[class^="css-"] /* Estilo para componentes visuales */ {
+      border-radius: 8px !important;
+      border: 1px solid #d1d5db !important;
+      padding: 12px !important;
+      font-family: var(--modern-font) !important;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    /* EFECTO FOCUS (Cuando el usuario hace clic en el campo) */
+    .nc-controlPane-widget input:focus,
+    .nc-controlPane-widget textarea:focus {
+      border-color: #3b82f6 !important; /* Azul moderno */
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+      outline: none !important;
+    }
+
+    /* MEJORAMOS EL PANEL DE PREVISUALIZACIÓN */
+    .nc-entryEditor-previewPane { 
+      background-color: #ffffff !important; 
+      border-radius: 12px !important;
+      padding: 20px !important;
+      margin-left: 20px !important;
+    }
+
+    /* ESTILIZAMOS LOS BOTONES (Guardar, Publicar, Subir archivo) */
+    button {
+      border-radius: 6px !important;
+      font-weight: 500 !important;
+      text-transform: none !important;
+      font-family: var(--modern-font) !important;
+    }
+
+    /* BOTÓN PRIMARIO (ej: Guardar/Publish) */
+    .nc-app-header-publishBtn, .css-1b15c9k-Button {
+      background-color: #2563eb !important; /* Azul corporativo */
+      color: white !important;
+    }
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/dist/decap-cms.js"></script>
   
   <script>
     if (window.netlifyIdentity) {
@@ -39,12 +101,10 @@
     CMS.registerEditorComponent({
       id: "video",
       label: "Insertar Video",
-      // Le mostramos los dos campos al usuario, pero ambos son opcionales
       fields: [
         {name: "youtube_url", label: "Opción A: Pega el enlace de YouTube", widget: "string", required: false},
         {name: "local_file", label: "Opción B: Sube un video MP4", widget: "file", required: false}
       ],
-      // Regex combinada para leer tanto iframes como videos locales existentes
       pattern: /^(?:<iframe.*?src="https:\/\/www\.youtube\.com\/embed\/([^"]+)".*?><\/iframe>|<video.*?><source src="([^"]+)".*?\/><\/video>)$/,
       fromBlock: function(match) {
         return {
@@ -53,13 +113,11 @@
         };
       },
       toBlock: function(obj) {
-        // Si el usuario llenó el campo de YouTube:
         if (obj.youtube_url) {
           var match = obj.youtube_url.match(/(?:youtu\.be\/|youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=))([^"&?\/\s]{11})/i);
           var videoId = match ? match[1] : obj.youtube_url;
-          return '<iframe width="100%" height="400" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+          return '<iframe width="100%" height="400" src="https://www->.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
         } 
-        // Si el usuario llenó el campo de Video Local:
         else if (obj.local_file) {
           return '<video width="100%" controls><source src="' + obj.local_file + '" type="video/mp4" />Tu navegador no soporta el tag de video.</video>';
         } 
