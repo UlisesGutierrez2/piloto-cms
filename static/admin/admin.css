@@ -126,3 +126,25 @@ button[class*="TogglePaneButton"] {
 button[class*="TogglePaneButton"]:hover {
   background: var(--border-color) !important;
 }
+
+/* 9. FIX DE LEGIBILIDAD: Forzar color en el Editor Rich Text (Lado Izquierdo) */
+div[data-slate-editor="true"] * {
+  color: var(--text-main) !important;
+  line-height: 1.6 !important;
+  font-size: 15px !important;
+}
+
+/* Diferenciar los títulos dentro de la caja de escritura */
+div[data-slate-editor="true"] h1, 
+div[data-slate-editor="true"] h2, 
+div[data-slate-editor="true"] h3 {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  margin-top: 1.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+/* Color para el texto en negrita dentro del editor */
+div[data-slate-editor="true"] strong {
+  color: var(--accent) !important;
+}
