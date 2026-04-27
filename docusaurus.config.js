@@ -56,7 +56,7 @@ const config = {
           sidebarPath: './sidebars.js',
           editUrl: ({versionDocsDirPath, docPath}) => {
             const documentPath = docPath.replace(/\.mdx?$/, '');
-            return `https://illustrious-churros-06f620.netlify.app//admin/#/collections/documentacion/entries/${documentPath}`;
+            return `https://mellifluous-cranachan-433888.netlify.app///admin/#/collections/documentacion/entries/${documentPath}`;
           },
         },
         blog: {
