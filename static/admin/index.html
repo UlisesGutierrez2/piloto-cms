@@ -3,118 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CMS Panel - DevOps</title>
+  <title>CMS Panel - Editor DevSecOps</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   
+  <link href="./admin.css" rel="stylesheet">
+  
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script src="https://illustrious-churros-06f620.netlify.app/"></script>
-
-  <style>
-    /* =========================================================
-       TEMA ENTERPRISE (CIRUGÍA DE INTERFAZ)
-       ========================================================= */
-    
-    :root {
-      --bg-page: #f9fafb;       
-      --bg-panel: #ffffff;      
-      --border-color: #d1d5db;  
-      --text-main: #111827;     
-      --text-muted: #6b7280;    
-      --accent-blue: #2563eb;   
-    }
-
-    body, #nc-root, .nc-app-container { 
-      font-family: 'Inter', sans-serif !important; 
-      background-color: var(--bg-page) !important;
-    }
-
-    /* --- 1. ETIQUETAS (LABELS) MODERNAS --- */
-    /* Destruimos el diseño viejo flotante y las ponemos arriba limpias */
-    .nc-controlPane-widget label,
-    div[class*="FieldLabel"] {
-      position: static !important; /* Quita el texto montado en el borde */
-      display: block !important;
-      background: transparent !important;
-      color: var(--text-muted) !important;
-      font-weight: 600 !important;
-      font-size: 11px !important;
-      text-transform: uppercase !important;
-      letter-spacing: 0.05em !important;
-      margin-bottom: 8px !important;
-      padding: 0 !important;
-      border: none !important;
-      box-shadow: none !important;
-    }
-
-    /* --- 2. CAMPOS DE TEXTO (INPUTS) --- */
-    input, textarea, div[data-slate-editor="true"] {
-      background-color: var(--bg-panel) !important;
-      border: 1px solid var(--border-color) !important;
-      border-radius: 8px !important;
-      padding: 14px !important;
-      font-size: 14px !important;
-      color: var(--text-main) !important;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
-      margin-bottom: 24px !important; /* Espacio entre cada campo */
-    }
-    input:focus, textarea:focus, div[data-slate-editor="true"]:focus {
-      border-color: var(--accent-blue) !important;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
-      outline: none !important;
-    }
-
-    /* --- 3. LA BARRA DE TAREAS (TOOLBAR) INTEGRADA --- */
-    /* El contenedor de la barra */
-    .nc-toolbar-toolbar {
-      background-color: #f3f4f6 !important;
-      border: 1px solid var(--border-color) !important;
-      border-bottom: none !important; /* Para que se una con el texto abajo */
-      border-radius: 8px 8px 0 0 !important; /* Redondeado solo arriba */
-      padding: 8px 12px !important;
-      margin-bottom: 0 !important; /* Se pega a la caja de texto */
-    }
-    /* La caja de texto del editor principal (quitamos bordes de arriba para unirla a la barra) */
-    .nc-controlPane-widget[data-slate-editor="true"],
-    div[class*="MarkdownControl"] > div:last-child {
-      border-top-left-radius: 0 !important;
-      border-top-right-radius: 0 !important;
-      margin-top: 0 !important;
-    }
-    /* Iconos de la barra */
-    .nc-toolbar-toolbar button {
-      color: #4b5563 !important;
-      border-radius: 4px !important;
-    }
-    .nc-toolbar-toolbar button:hover {
-      background-color: #e5e7eb !important;
-      color: #111827 !important;
-    }
-
-    /* --- 4. TOP BAR Y BOTONES --- */
-    .nc-entryEditor-header {
-      padding: 16px 24px !important;
-      background-color: var(--bg-panel) !important;
-      border-bottom: 1px solid var(--border-color) !important;
-    }
-    button { 
-      border-radius: 6px !important; 
-      font-weight: 500 !important;
-      padding: 8px 16px !important;
-    }
-    .nc-app-header-publishBtn, div[class*="DropdownButton"] button {
-      background-color: var(--accent-blue) !important;
-      color: white !important;
-      border: none !important;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
-    }
-  </style>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
@@ -126,7 +26,17 @@
       });
     }
 
-    // BOTÓN ÚNICO DE VIDEO
+    // 3. Forzamos el tema oscuro también dentro del iFrame de previsualización
+    CMS.registerPreviewStyle(`
+      body { background-color: #0d1117; color: #c9d1d9; font-family: 'Inter', sans-serif; padding: 20px; line-height: 1.6; }
+      h1, h2, h3, h4 { color: #ffffff; border-bottom: 1px solid #30363d; padding-bottom: 8px; }
+      strong, b { color: #58a6ff; }
+      a { color: #58a6ff; text-decoration: none; }
+      code { background-color: #161b22; padding: 3px 6px; border-radius: 6px; color: #ff7b72; border: 1px solid #30363d; }
+      blockquote { border-left: 4px solid #30363d; color: #8b949e; padding-left: 10px; }
+    `, { raw: true });
+
+    // Componente de Video Intacto
     CMS.registerEditorComponent({
       id: "video",
       label: "Insertar Video",
@@ -136,10 +46,7 @@
       ],
       pattern: /^(?:<iframe.*?src="https:\/\/www\.youtube\.com\/embed\/([^"]+)".*?><\/iframe>|<video.*?><source src="([^"]+)".*?\/><\/video>)$/,
       fromBlock: function(match) {
-        return {
-          youtube_url: match[1] ? 'https://www.youtube.com/watch?v=' + match[1] : '',
-          local_file: match[2] || ''
-        };
+        return { youtube_url: match[1] ? 'https://www.youtube.com/watch?v=' + match[1] : '', local_file: match[2] || '' };
       },
       toBlock: function(obj) {
         if (obj.youtube_url) {
@@ -150,7 +57,7 @@
           return '<video width="100%" controls><source src="' + obj.local_file + '" type="video/mp4" />Tu navegador no soporta el tag de video.</video>';
         } return '';
       },
-      toPreview: function(obj) { return '<em>Vista previa de video</em>'; }
+      toPreview: function(obj) { return '<div style="padding:20px; background:#161b22; border:1px dashed #30363d; border-radius:8px; text-align:center; color:#8b949e;">🎥 <em>Vista previa de video activada</em></div>'; }
     });
   </script>
 </body>
