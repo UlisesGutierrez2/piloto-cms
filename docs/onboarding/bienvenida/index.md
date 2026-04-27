@@ -1,8 +1,6 @@
 ---
 title: Bienvenida
 ---
-
-
 Bienvenido/a a nuestro equipo:
 
 Nos alegra darte la bienvenida y acompañarte en el inicio de esta nueva etapa. A partir de hoy, pasas a formar parte de una organización que valora el compromiso, la colaboración y el crecimiento constante.
@@ -13,8 +11,6 @@ Durante tus primeros días, contarás con el apoyo de tu equipo y de las distint
 
 Te deseamos mucho éxito en este camino que comenzamos juntos.
 
-¡Bienvenido/a!
-
-
+¡Bienvenido/a! 
 
 ![](https://thumbs.dreamstime.com/z/bienvenida-la-ilustraci%C3%B3n-vectorial-de-concepto-equipo-oficina-trabajando-en-proyectos-empresariales-que-generen-ideas-178366559.jpg)
