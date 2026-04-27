@@ -1,4 +1,4 @@
-/* Variables Globales */
+/* Variables Globales (Estilo GitHub Dark) */
 :root {
   --bg-dark: #0d1117;       
   --bg-panel: #161b22;      
@@ -27,9 +27,10 @@ div[class*="AppMainContainer"] {
 div[class*="AppHeader"] {
   background-color: var(--bg-panel) !important;
   border-bottom: 1px solid var(--border-color) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
 }
 
-/* 3. Etiquetas (Labels) sin parches blancos */
+/* 3. Etiquetas (Labels) modernas */
 label, 
 div[class*="FieldLabel"], 
 .nc-controlPane-widget label {
@@ -44,7 +45,7 @@ div[class*="FieldLabel"],
   letter-spacing: 0.05em !important;
 }
 
-/* 4. Cajas de Texto (Inputs) */
+/* 4. Cajas de Texto (Inputs) con transiciones suaves */
 input, 
 textarea, 
 div[data-slate-editor="true"], 
@@ -52,14 +53,15 @@ div[class*="MarkdownControl"] {
   background-color: var(--bg-panel) !important;
   color: var(--text-main) !important;
   border: 1px solid var(--border-color) !important;
-  border-radius: 6px !important;
-  padding: 12px !important;
+  border-radius: 8px !important;
+  padding: 14px !important;
   box-shadow: none !important;
+  transition: all 0.2s ease-in-out !important;
 }
 input:focus, textarea:focus, div[data-slate-editor="true"]:focus {
   border-color: var(--accent) !important;
   outline: none !important;
-  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2) !important;
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.15) !important;
 }
 
 /* 5. Barra de Herramientas del texto enriquecido */
@@ -68,20 +70,22 @@ div[class*="ToolbarContainer"] {
   background-color: #0d1117 !important;
   border: 1px solid var(--border-color) !important;
   border-bottom: none !important;
-  border-radius: 6px 6px 0 0 !important;
+  border-radius: 8px 8px 0 0 !important;
 }
 .nc-toolbar-toolbar button, button[class*="ToolbarButton"] {
   color: var(--text-muted) !important;
+  transition: all 0.15s ease !important;
 }
 .nc-toolbar-toolbar button:hover {
   background-color: var(--border-color) !important;
   color: var(--text-main) !important;
+  border-radius: 4px !important;
 }
 
 /* 6. Panel Derecho (Contenedor de Vista Previa) */
 .nc-entryEditor-previewPane,
 div[class*="PreviewPaneContainer"] {
-  background-color: var(--bg-panel) !important;
+  background-color: var(--bg-dark) !important;
   border-left: 1px solid var(--border-color) !important;
 }
 
@@ -91,7 +95,14 @@ button {
   color: var(--text-main) !important;
   border: 1px solid var(--border-color) !important;
   border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
 }
+button:hover {
+  background-color: var(--border-color) !important;
+}
+
+/* Botón de Publicar (Accento principal) */
 .nc-app-header-publishBtn, 
 div[class*="DropdownButton"] button,
 button[class*="Button-button-primary"] {
@@ -99,4 +110,19 @@ button[class*="Button-button-primary"] {
   color: #0d1117 !important; 
   font-weight: 600 !important;
   border: none !important;
+}
+.nc-app-header-publishBtn:hover, button[class*="Button-button-primary"]:hover {
+  background-color: #79b8ff !important; /* Azul más claro al hacer hover */
+}
+
+/* 8. Fix para los botones flotantes de la vista previa (el ojito) */
+button[class*="TogglePaneButton"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 6px !important;
+  color: var(--text-muted) !important;
+}
+button[class*="TogglePaneButton"]:hover {
+  background: var(--border-color) !important;
 }
