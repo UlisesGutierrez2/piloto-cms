@@ -56,7 +56,7 @@ const config = {
           sidebarPath: './sidebars.js',
           editUrl: ({versionDocsDirPath, docPath}) => {
             const documentPath = docPath.replace(/\.mdx?$/, '');
-            return `https://silly-boba-bbdc37.netlify.app//admin/#/collections/documentacion/entries/${documentPath}`;
+            return `https://illustrious-churros-06f620.netlify.app//admin/#/collections/documentacion/entries/${documentPath}`;
           },
         },
         blog: {
