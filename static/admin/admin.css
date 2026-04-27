@@ -148,3 +148,19 @@ div[data-slate-editor="true"] h3 {
 div[data-slate-editor="true"] strong {
   color: var(--accent) !important;
 }
+
+/* 10. FIX DEL CUADRO BLANCO Y ALTURA COMPLETA DEL EDITOR */
+
+/* Eliminar el fondo blanco residual en los contenedores internos del widget Markdown */
+div[class*="MarkdownControl"] > div,
+div[class*="MarkdownControl"] > div > div {
+  background-color: var(--bg-panel) !important;
+}
+
+/* Darle una altura vertical amplia al área de texto para que no se colapse cuando está vacía */
+div[data-slate-editor="true"] {
+  min-height: 60vh !important; /* Ocupa el 60% del alto de la ventana de tu navegador */
+  height: 100% !important;
+  border-radius: 0 0 8px 8px !important;
+  padding-bottom: 40px !important; /* Espacio extra abajo para que el cursor no quede pegado al borde */
+}
