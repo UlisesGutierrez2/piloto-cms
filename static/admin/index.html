@@ -9,13 +9,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   
-  <link href="./admin.css" rel="stylesheet">
-  
+  <link href="admin.css" rel="stylesheet">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
   <script>
+    // 2. Lógica de Autenticación Identity
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
@@ -26,39 +27,48 @@
       });
     }
 
-    // 3. Forzamos el tema oscuro también dentro del iFrame de previsualización
-    CMS.registerPreviewStyle(`
-      body { background-color: #0d1117; color: #c9d1d9; font-family: 'Inter', sans-serif; padding: 20px; line-height: 1.6; }
-      h1, h2, h3, h4 { color: #ffffff; border-bottom: 1px solid #30363d; padding-bottom: 8px; }
-      strong, b { color: #58a6ff; }
-      a { color: #58a6ff; text-decoration: none; }
-      code { background-color: #161b22; padding: 3px 6px; border-radius: 6px; color: #ff7b72; border: 1px solid #30363d; }
-      blockquote { border-left: 4px solid #30363d; color: #8b949e; padding-left: 10px; }
-    `, { raw: true });
+    // 3. Seguro anti-cuelgues: Esperamos 100ms a que el CMS arranque para registrar los componentes
+    setTimeout(() => {
+        if (window.CMS) {
+          
+          // Inyectamos el tema oscuro a la vista previa
+          CMS.registerPreviewStyle(`
+            body { background-color: #0d1117; color: #c9d1d9; font-family: 'Inter', sans-serif; padding: 20px; line-height: 1.6; }
+            h1, h2, h3, h4 { color: #ffffff; border-bottom: 1px solid #30363d; padding-bottom: 8px; }
+            strong, b { color: #58a6ff; }
+            a { color: #58a6ff; text-decoration: none; }
+            code { background-color: #161b22; padding: 3px 6px; border-radius: 6px; color: #ff7b72; border: 1px solid #30363d; }
+            blockquote { border-left: 4px solid #30363d; color: #8b949e; padding-left: 10px; }
+          `, { raw: true });
 
-    // Componente de Video Intacto
-    CMS.registerEditorComponent({
-      id: "video",
-      label: "Insertar Video",
-      fields: [
-        {name: "youtube_url", label: "Opción A: Pega el enlace de YouTube", widget: "string", required: false},
-        {name: "local_file", label: "Opción B: Sube un video MP4", widget: "file", required: false}
-      ],
-      pattern: /^(?:<iframe.*?src="https:\/\/www\.youtube\.com\/embed\/([^"]+)".*?><\/iframe>|<video.*?><source src="([^"]+)".*?\/><\/video>)$/,
-      fromBlock: function(match) {
-        return { youtube_url: match[1] ? 'https://www.youtube.com/watch?v=' + match[1] : '', local_file: match[2] || '' };
-      },
-      toBlock: function(obj) {
-        if (obj.youtube_url) {
-          var match = obj.youtube_url.match(/(?:youtu\.be\/|youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=))([^"&?\/\s]{11})/i);
-          var videoId = match ? match[1] : obj.youtube_url;
-          return '<iframe width="100%" height="400" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
-        } else if (obj.local_file) {
-          return '<video width="100%" controls><source src="' + obj.local_file + '" type="video/mp4" />Tu navegador no soporta el tag de video.</video>';
-        } return '';
-      },
-      toPreview: function(obj) { return '<div style="padding:20px; background:#161b22; border:1px dashed #30363d; border-radius:8px; text-align:center; color:#8b949e;">🎥 <em>Vista previa de video activada</em></div>'; }
-    });
+          // Registramos el widget de Video
+          CMS.registerEditorComponent({
+            id: "video",
+            label: "Insertar Video",
+            fields: [
+              {name: "youtube_url", label: "Opción A: Pega el enlace de YouTube", widget: "string", required: false},
+              {name: "local_file", label: "Opción B: Sube un video MP4", widget: "file", required: false}
+            ],
+            pattern: /^(?:<iframe.*?src="https:\/\/www\.youtube\.com\/embed\/([^"]+)".*?><\/iframe>|<video.*?><source src="([^"]+)".*?\/><\/video>)$/,
+            fromBlock: function(match) {
+              return { youtube_url: match[1] ? 'https://www.youtube.com/watch?v=' + match[1] : '', local_file: match[2] || '' };
+            },
+            toBlock: function(obj) {
+              if (obj.youtube_url) {
+                var match = obj.youtube_url.match(/(?:youtu\.be\/|youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=))([^"&?\/\s]{11})/i);
+                var videoId = match ? match[1] : obj.youtube_url;
+                return '<iframe width="100%" height="400" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+              } else if (obj.local_file) {
+                return '<video width="100%" controls><source src="' + obj.local_file + '" type="video/mp4" />Tu navegador no soporta el tag de video.</video>';
+              } return '';
+            },
+            toPreview: function(obj) { return '<div style="padding:20px; background:#161b22; border:1px dashed #30363d; border-radius:8px; text-align:center; color:#8b949e;">🎥 <em>Vista previa de video activada</em></div>'; }
+          });
+          
+        } else {
+            console.error("El objeto CMS no se cargó a tiempo.");
+        }
+    }, 100);
   </script>
 </body>
 </html>
