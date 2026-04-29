@@ -2,7 +2,7 @@ backend:
   name: git-gateway
   branch: main
 
-publish_mode: editorial_workflow
+#publish_mode: editorial_workflow
 
 # 1. Configuración Global (Fallback por si creas una colección sin ruta específica)
 media_folder: "static/img"
