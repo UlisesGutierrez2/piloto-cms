@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+# Ignorar los PRs generados por los borradores del CMS
+[build.context.deploy-preview]
+  ignore = "exit 0"
+
+# Ignorar ramas sueltas, solo compilar main
+[build.context.branch-deploy]
+  ignore = "exit 0"
