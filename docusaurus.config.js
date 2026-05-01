@@ -38,7 +38,6 @@ const config = {
     },
   },
 
-  
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -47,7 +46,7 @@ const config = {
     locales: ['en'],
   },
 
- presets: [
+  presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
@@ -64,7 +63,6 @@ const config = {
 
             if (documentPath.startsWith('onboarding/')) {
               collectionName = 'onboarding';
-              // Removemos la carpeta base para dejar solo la ruta interna (ej: 'directorios/index')
               slug = documentPath.replace('onboarding/', '');
             } else if (documentPath.startsWith('lineamientos/')) {
               collectionName = 'lineamientos';
@@ -74,7 +72,12 @@ const config = {
               slug = documentPath;
             }
 
-            // Retornamos la URL limpia. Sveltia necesita leer el "/index" final, así que lo enviamos intacto.
+            // 3. LA REGLA DE ORO: Si la ruta termina en "/index", lo borramos.
+            // Así, "directorios/index" se convierte en "directorios" y Sveltia lo encuentra.
+            if (slug.endsWith('/index')) {
+              slug = slug.replace(/\/index$/, '');
+            }
+
             return `https://mellifluous-cranachan-433888.netlify.app/admin/#/collections/${collectionName}/entries/${slug}`;
           },
         },
@@ -95,7 +98,6 @@ const config = {
       }),
     ],
   ],
-
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
