@@ -56,7 +56,20 @@ const config = {
           sidebarPath: './sidebars.js',
           editUrl: ({versionDocsDirPath, docPath}) => {
             const documentPath = docPath.replace(/\.mdx?$/, '');
-            return `https://mellifluous-cranachan-433888.netlify.app///admin/#/collections/documentacion/entries/${documentPath}`;
+            
+            // 1. Detectar dinámicamente a qué colección pertenece el archivo
+            let collectionName = '';
+            if (docPath.startsWith('onboarding/')) {
+              collectionName = 'onboarding';
+            } else if (docPath.startsWith('lineamientos/')) {
+              collectionName = 'lineamientos';
+            } else {
+              // Fallback por si hay archivos sueltos fuera de esas carpetas
+              collectionName = 'onboarding'; 
+            }
+
+            // 2. Retornar la URL limpia (sin doble slash) y con la colección correcta
+            return `https://mellifluous-cranachan-433888.netlify.app/admin/#/collections/${collectionName}/entries/${documentPath}`;
           },
         },
         blog: {
