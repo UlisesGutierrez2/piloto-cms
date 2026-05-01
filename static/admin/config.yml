@@ -3,7 +3,6 @@ backend:
   name: github
   repo: UlisesGutierrez2/piloto-cms
   branch: main
-  base_url: https://sveltia-cms.netlify.app
   
 # Mantenemos el flujo de Pull Requests
 publish_mode: editorial_workflow
