@@ -17,9 +17,10 @@ collections:
     label: "Onboarding"
     folder: "docs/onboarding"
     create: true
+    extension: "mdx"          # <--- AGREGAR ESTO
+    format: "frontmatter"     # <--- AGREGAR ESTO
     nested:
       depth: 3
-    # Las imágenes de onboarding van a su propia carpeta
     media_folder: "static/img/onboarding"
     public_folder: "/img/onboarding"
     meta:
@@ -36,9 +37,10 @@ collections:
     label: "Lineamientos"
     folder: "docs/lineamientos"
     create: true
+    extension: "mdx"          # <--- AGREGAR ESTO
+    format: "frontmatter"     # <--- AGREGAR ESTO
     nested:
       depth: 3
-    # Las imágenes de lineamientos van a su propia carpeta
     media_folder: "static/img/lineamientos"
     public_folder: "/img/lineamientos"
     meta:
