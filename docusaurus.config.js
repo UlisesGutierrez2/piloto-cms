@@ -55,13 +55,13 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           editUrl: ({versionDocsDirPath, docPath}) => {
-            // Quitamos la extensión para obtener la ruta limpia
-            const documentPath = docPath.replace(/\.mdx?$/, '');
+            // 1. Quitamos la extensión (.md o .mdx)
+            let documentPath = docPath.replace(/\.mdx?$/, '');
             
+            // 2. Detectamos a qué colección pertenece
             let collectionName = '';
-            let slug = documentPath;
+            let slug = '';
 
-            // Detectamos la colección y limpiamos el slug (quitamos la carpeta base)
             if (documentPath.startsWith('onboarding/')) {
               collectionName = 'onboarding';
               slug = documentPath.replace('onboarding/', '');
@@ -70,6 +70,12 @@ const config = {
               slug = documentPath.replace('lineamientos/', '');
             } else {
               collectionName = 'onboarding'; // fallback
+              slug = documentPath;
+            }
+
+            // 3. Recortamos el "/index" final para que coincida con el formato de Sveltia
+            if (slug.endsWith('/index')) {
+              slug = slug.replace(/\/index$/, '');
             }
 
             return `https://mellifluous-cranachan-433888.netlify.app/admin/#/collections/${collectionName}/entries/${slug}`;
