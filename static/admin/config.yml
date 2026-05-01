@@ -3,7 +3,7 @@ backend:
   name: github
   repo: UlisesGutierrez2/piloto-cms
   branch: main
-  
+
 # Mantenemos el flujo de Pull Requests
 publish_mode: editorial_workflow
 
@@ -17,8 +17,8 @@ collections:
     label: "Onboarding"
     folder: "docs/onboarding"
     create: true
-    extension: "mdx"          # <--- AGREGAR ESTO
-    format: "frontmatter"     # <--- AGREGAR ESTO
+    extension: "md"           # <--- Cambiado a "md" para que encuentre tus archivos
+    format: "frontmatter"
     nested:
       depth: 3
     media_folder: "static/img/onboarding"
@@ -37,8 +37,8 @@ collections:
     label: "Lineamientos"
     folder: "docs/lineamientos"
     create: true
-    extension: "mdx"          # <--- AGREGAR ESTO
-    format: "frontmatter"     # <--- AGREGAR ESTO
+    extension: "md"           # <--- Cambiado a "md"
+    format: "frontmatter"
     nested:
       depth: 3
     media_folder: "static/img/lineamientos"
