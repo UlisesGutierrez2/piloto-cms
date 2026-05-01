@@ -64,6 +64,7 @@ const config = {
 
             if (documentPath.startsWith('onboarding/')) {
               collectionName = 'onboarding';
+              // Removemos la carpeta base para dejar solo la ruta interna (ej: 'directorios/index')
               slug = documentPath.replace('onboarding/', '');
             } else if (documentPath.startsWith('lineamientos/')) {
               collectionName = 'lineamientos';
@@ -73,11 +74,7 @@ const config = {
               slug = documentPath;
             }
 
-            // 3. Recortamos el "/index" final para que coincida con el formato de Sveltia
-            if (slug.endsWith('/index')) {
-              slug = slug.replace(/\/index$/, '');
-            }
-
+            // Retornamos la URL limpia. Sveltia necesita leer el "/index" final, así que lo enviamos intacto.
             return `https://mellifluous-cranachan-433888.netlify.app/admin/#/collections/${collectionName}/entries/${slug}`;
           },
         },
