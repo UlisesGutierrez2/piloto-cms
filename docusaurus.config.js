@@ -55,21 +55,24 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           editUrl: ({versionDocsDirPath, docPath}) => {
+            // Quitamos la extensión para obtener la ruta limpia
             const documentPath = docPath.replace(/\.mdx?$/, '');
             
-            // 1. Detectar dinámicamente a qué colección pertenece el archivo
             let collectionName = '';
-            if (docPath.startsWith('onboarding/')) {
+            let slug = documentPath;
+
+            // Detectamos la colección y limpiamos el slug (quitamos la carpeta base)
+            if (documentPath.startsWith('onboarding/')) {
               collectionName = 'onboarding';
-            } else if (docPath.startsWith('lineamientos/')) {
+              slug = documentPath.replace('onboarding/', '');
+            } else if (documentPath.startsWith('lineamientos/')) {
               collectionName = 'lineamientos';
+              slug = documentPath.replace('lineamientos/', '');
             } else {
-              // Fallback por si hay archivos sueltos fuera de esas carpetas
-              collectionName = 'onboarding'; 
+              collectionName = 'onboarding'; // fallback
             }
 
-            // 2. Retornar la URL limpia (sin doble slash) y con la colección correcta
-            return `https://mellifluous-cranachan-433888.netlify.app/admin/#/collections/${collectionName}/entries/${documentPath}`;
+            return `https://mellifluous-cranachan-433888.netlify.app/admin/#/collections/${collectionName}/entries/${slug}`;
           },
         },
         blog: {
