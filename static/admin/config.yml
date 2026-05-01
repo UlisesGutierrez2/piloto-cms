@@ -1,22 +1,25 @@
+# Backend moderno apuntando directo a GitHub
 backend:
-  name: git-gateway
+  name: github
+  repo: UlisesGutierrez2/piloto-cms
   branch: main
 
-#publish_mode: editorial_workflow
+# Mantenemos el flujo de Pull Requests
+publish_mode: editorial_workflow
 
-# 1. Configuración Global (Fallback por si creas una colección sin ruta específica)
+# Carpeta de imágenes por defecto
 media_folder: "static/img"
 public_folder: "/img"
 
 collections:
-  # --- COLECCIÓN: ONBOARDING ---
+  # --- 1. COLECCIÓN: ONBOARDING ---
   - name: "onboarding"
     label: "Onboarding"
-    folder: "docs/onboarding" # Dónde se guardan los .mdx
+    folder: "docs/onboarding"
     create: true
     nested:
       depth: 3
-    # 2. La magia ocurre aquí: Redirigimos los archivos multimedia de esta colección
+    # Las imágenes de onboarding van a su propia carpeta
     media_folder: "static/img/onboarding"
     public_folder: "/img/onboarding"
     meta:
@@ -28,14 +31,14 @@ collections:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Cuerpo del texto", name: "body", widget: "markdown"}
 
-  # --- COLECCIÓN: LINEAMIENTOS ---
+  # --- 2. COLECCIÓN: LINEAMIENTOS ---
   - name: "lineamientos"
     label: "Lineamientos"
     folder: "docs/lineamientos"
     create: true
     nested:
       depth: 3
-    # Mapeo específico para imágenes de lineamientos
+    # Las imágenes de lineamientos van a su propia carpeta
     media_folder: "static/img/lineamientos"
     public_folder: "/img/lineamientos"
     meta:
