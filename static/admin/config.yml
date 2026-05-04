@@ -1,6 +1,7 @@
 # Conexión a tu repositorio
 backend:
   name: github
+  repo: UlisesGutierrez2/piloto-cms
   branch: main
 
 # Flujo de trabajo con Pull Requests

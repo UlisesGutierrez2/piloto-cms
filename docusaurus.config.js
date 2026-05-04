@@ -38,7 +38,6 @@ const config = {
     },
   },
 
-  
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -47,7 +46,7 @@ const config = {
     locales: ['en'],
   },
 
- presets: [
+  presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
@@ -55,8 +54,31 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           editUrl: ({versionDocsDirPath, docPath}) => {
-            const documentPath = docPath.replace(/\.mdx?$/, '');
-            return `https://mellifluous-cranachan-433888.netlify.app///admin/#/collections/documentacion/entries/${documentPath}`;
+            // 1. Quitamos la extensión (.md o .mdx)
+            let documentPath = docPath.replace(/\.mdx?$/, '');
+            
+            // 2. Detectamos a qué colección pertenece
+            let collectionName = '';
+            let slug = '';
+
+            if (documentPath.startsWith('onboarding/')) {
+              collectionName = 'onboarding';
+              slug = documentPath.replace('onboarding/', '');
+            } else if (documentPath.startsWith('lineamientos/')) {
+              collectionName = 'lineamientos';
+              slug = documentPath.replace('lineamientos/', '');
+            } else {
+              collectionName = 'onboarding'; // fallback
+              slug = documentPath;
+            }
+
+            // 3. LA REGLA DE ORO: Si la ruta termina en "/index", lo borramos.
+            // Así, "directorios/index" se convierte en "directorios" y Sveltia lo encuentra.
+            if (slug.endsWith('/index')) {
+              slug = slug.replace(/\/index$/, '');
+            }
+
+            return `https://mellifluous-cranachan-433888.netlify.app/admin/#/collections/${collectionName}/entries/${slug}`;
           },
         },
         blog: {
@@ -76,7 +98,6 @@ const config = {
       }),
     ],
   ],
-
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
