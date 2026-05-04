@@ -1,13 +1,13 @@
-# Backend moderno apuntando directo a GitHub
+# Conexión a tu repositorio
 backend:
   name: github
   repo: UlisesGutierrez2/piloto-cms
   branch: main
 
-# Mantenemos el flujo de Pull Requests
+# Flujo de trabajo con Pull Requests
 publish_mode: editorial_workflow
 
-# Carpeta de imágenes por defecto
+# Imágenes globales
 media_folder: "static/img"
 public_folder: "/img"
 
@@ -17,17 +17,18 @@ collections:
     label: "Onboarding"
     folder: "docs/onboarding"
     create: true
-    extension: "md"           # <--- Cambiado a "md" para que encuentre tus archivos
+    extension: "md"
     format: "frontmatter"
+    # Soporte para tus múltiples niveles de subcarpetas
     nested:
-      depth: 3
-    media_folder: "static/img/onboarding"
-    public_folder: "/img/onboarding"
+      depth: 10
     meta:
       path:
         widget: string
         label: 'Path'
         index_file: 'index'
+    media_folder: "static/img/onboarding"
+    public_folder: "/img/onboarding"
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Cuerpo del texto", name: "body", widget: "markdown"}
@@ -37,17 +38,18 @@ collections:
     label: "Lineamientos"
     folder: "docs/lineamientos"
     create: true
-    extension: "md"           # <--- Cambiado a "md"
+    extension: "md"
     format: "frontmatter"
+    # Soporte para tus múltiples niveles de subcarpetas
     nested:
-      depth: 3
-    media_folder: "static/img/lineamientos"
-    public_folder: "/img/lineamientos"
+      depth: 10
     meta:
       path:
         widget: string
         label: 'Path'
         index_file: 'index'
+    media_folder: "static/img/lineamientos"
+    public_folder: "/img/lineamientos"
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Cuerpo del texto", name: "body", widget: "markdown"}
