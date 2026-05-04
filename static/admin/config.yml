@@ -1,55 +1,48 @@
-# Conexión a tu repositorio
 backend:
-  name: github
-  repo: UlisesGutierrez2/piloto-cms
+  name: git-gateway
   branch: main
 
-# Flujo de trabajo con Pull Requests
 publish_mode: editorial_workflow
 
-# Imágenes globales
+# 1. Configuración Global (Fallback por si creas una colección sin ruta específica)
 media_folder: "static/img"
 public_folder: "/img"
 
 collections:
-  # --- 1. COLECCIÓN: ONBOARDING ---
+  # --- COLECCIÓN: ONBOARDING ---
   - name: "onboarding"
     label: "Onboarding"
-    folder: "docs/onboarding"
+    folder: "docs/onboarding" # Dónde se guardan los .mdx
     create: true
-    extension: "md"
-    format: "frontmatter"
-    # Soporte para tus múltiples niveles de subcarpetas
     nested:
-      depth: 10
+      depth: 3
+    # 2. La magia ocurre aquí: Redirigimos los archivos multimedia de esta colección
+    media_folder: "static/img/onboarding"
+    public_folder: "/img/onboarding"
     meta:
       path:
         widget: string
         label: 'Path'
         index_file: 'index'
-    media_folder: "static/img/onboarding"
-    public_folder: "/img/onboarding"
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Cuerpo del texto", name: "body", widget: "markdown"}
 
-  # --- 2. COLECCIÓN: LINEAMIENTOS ---
+  # --- COLECCIÓN: LINEAMIENTOS ---
   - name: "lineamientos"
     label: "Lineamientos"
     folder: "docs/lineamientos"
     create: true
-    extension: "md"
-    format: "frontmatter"
-    # Soporte para tus múltiples niveles de subcarpetas
     nested:
-      depth: 10
+      depth: 3
+    # Mapeo específico para imágenes de lineamientos
+    media_folder: "static/img/lineamientos"
+    public_folder: "/img/lineamientos"
     meta:
       path:
         widget: string
         label: 'Path'
         index_file: 'index'
-    media_folder: "static/img/lineamientos"
-    public_folder: "/img/lineamientos"
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Cuerpo del texto", name: "body", widget: "markdown"}
