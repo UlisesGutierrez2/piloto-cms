@@ -17,7 +17,7 @@ collections:
     label: "Onboarding"
     folder: "docs/onboarding"
     create: true
-    extension: "mdx"
+    extension: "md"
     format: "frontmatter"
     # Soporte para tus múltiples niveles de subcarpetas
     nested:
