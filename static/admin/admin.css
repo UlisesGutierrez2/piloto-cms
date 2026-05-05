@@ -348,58 +348,63 @@ div[data-slate-editor="true"] {
 }
 
 /* ========================================================= */
-/* 4. FIX PARA WIDGETS INCRUSTADOS (COMO EL DE VIDEO)        */
+/* 4. FIX DEFINITIVO PARA WIDGETS INCRUSTADOS (VIDEO)        */
 /* ========================================================= */
 
-/* Fondo del componente incrustado (el cuadro que se veía blanco) */
-div[class*="ObjectControl-root"],
-div[class*="ObjectWidgetTopBar-root"] + div,
+/* Contenedor principal absoluto del widget incrustado */
 div[data-slate-editor="true"] div[contenteditable="false"] > div {
   background-color: var(--bg-panel) !important;
   border: 1px solid var(--border-color) !important;
-  border-top: none !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
 }
 
-/* La barra superior del bloque (donde está la flechita para minimizar) */
-div[class*="ObjectWidgetTopBar-root"] {
+/* Barra superior gris (donde está la flecha de minimizar) */
+div[data-slate-editor="true"] div[contenteditable="false"] > div > div:first-child {
   background-color: var(--bg-dark) !important;
-  border: 1px solid var(--border-color) !important;
+  border-bottom: 1px solid var(--border-color) !important;
 }
 
-/* Etiquetas de los campos dentro del bloque ("OPCIÓN A", "OPCIÓN B") */
-div[data-slate-editor="true"] label,
-div[class*="ObjectControl-root"] label,
+/* El cuerpo del widget (matar el fondo blanco) */
+div[data-slate-editor="true"] div[contenteditable="false"] > div > div:last-child {
+  background-color: var(--bg-panel) !important;
+}
+
+/* Etiquetas (Cambiar el celeste por gris claro para que no lastime la vista) */
+div[data-slate-editor="true"] div[contenteditable="false"] label,
 [class*="FieldLabel-root"] {
-  color: var(--accent) !important; /* Azul estilo GitHub para resaltar */
+  color: var(--text-muted) !important; 
   font-weight: 600 !important;
   font-size: 12px !important;
+  letter-spacing: 0.5px !important;
 }
 
-/* Cajas de texto dentro del widget (el input de YouTube) */
-div[class*="ObjectControl-root"] input {
+/* Cajas de texto (Inputs) */
+div[data-slate-editor="true"] input {
   background-color: var(--bg-dark) !important;
   color: var(--text-main) !important;
   border: 1px solid var(--border-color) !important;
+  border-radius: 4px !important;
 }
 
-/* Botones de subida de archivos (Choose a file / Insert from URL) */
-div[class*="ObjectControl-root"] button {
-  background-color: var(--border-color) !important;
+/* Botones de subida de archivos */
+div[data-slate-editor="true"] button {
+  background-color: var(--bg-dark) !important;
   color: var(--text-main) !important;
   border: 1px solid var(--border-color) !important;
-  border-radius: 6px !important;
+  border-radius: 4px !important;
   transition: all 0.2s ease;
 }
 
-div[class*="ObjectControl-root"] button:hover {
-  background-color: var(--accent) !important;
+div[data-slate-editor="true"] button:hover {
+  background-color: var(--border-color) !important;
   color: #ffffff !important;
-  border-color: var(--accent) !important;
 }
 
-/* El fondo del panel "File" cuando no hay archivo subido */
-[class*="FileWidget-root"],
-[class*="ImageWidget-root"] {
+/* Panel interior de subida de video ("Choose a file") */
+div[data-slate-editor="true"] div[class*="FileWidget"],
+div[data-slate-editor="true"] div[class*="ImageWidget"] {
   background-color: var(--bg-dark) !important;
   border: 1px dashed var(--border-color) !important;
+  border-radius: 6px !important;
 }
