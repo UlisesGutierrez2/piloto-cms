@@ -78,7 +78,7 @@ const config = {
               slug = slug.replace(/\/index$/, '');
             }
 
-            return `https://mellifluous-cranachan-433888.netlify.app/admin/#/collections/${collectionName}/entries/${slug}`;
+            return `https://celebrated-tapioca-5bf719.netlify.app/admin/#/collections/${collectionName}/entries/${slug}`;
           },
         },
         blog: {
