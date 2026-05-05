@@ -15,9 +15,10 @@ collections:
   # --- 1. COLECCIÓN: ONBOARDING ---
   - name: "onboarding"
     label: "Onboarding"
+    label_singular: "Document"
     folder: "docs/onboarding"
     create: true
-    extension: "mdx"
+    extension: "md"
     format: "frontmatter"
     # Soporte para tus múltiples niveles de subcarpetas
     nested:
@@ -36,6 +37,7 @@ collections:
   # --- 2. COLECCIÓN: LINEAMIENTOS ---
   - name: "lineamientos"
     label: "Lineamientos"
+    label_singular: "Document"
     folder: "docs/lineamientos"
     create: true
     extension: "md"
