@@ -1,3 +1,5 @@
+BotonCMS
+
 import React from 'react';
 
 export default function BotonCMS({ area, coleccion }) {
