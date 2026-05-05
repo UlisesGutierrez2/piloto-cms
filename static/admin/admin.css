@@ -348,63 +348,40 @@ div[data-slate-editor="true"] {
 }
 
 /* ========================================================= */
-/* 4. FIX DEFINITIVO PARA WIDGETS INCRUSTADOS (VIDEO)        */
+/* 4. FIX DEFINITIVO: MODO TRANSPARENTE PARA WIDGETS         */
 /* ========================================================= */
 
-/* Contenedor principal absoluto del widget incrustado */
-div[data-slate-editor="true"] div[contenteditable="false"] > div {
+/* 1. Le damos el color oscuro al contenedor padre */
+div[data-slate-editor="true"] div[contenteditable="false"] {
   background-color: var(--bg-panel) !important;
   border: 1px solid var(--border-color) !important;
   border-radius: 6px !important;
-  overflow: hidden !important;
+  padding: 10px !important;
+  margin: 10px 0 !important;
 }
 
-/* Barra superior gris (donde está la flecha de minimizar) */
-div[data-slate-editor="true"] div[contenteditable="false"] > div > div:first-child {
-  background-color: var(--bg-dark) !important;
-  border-bottom: 1px solid var(--border-color) !important;
+/* 2. EL TRUCO: Forzamos a todos los divs internos rebeldes a ser transparentes */
+div[data-slate-editor="true"] div[contenteditable="false"] div {
+  background-color: transparent !important;
+  border-color: var(--border-color) !important;
 }
 
-/* El cuerpo del widget (matar el fondo blanco) */
-div[data-slate-editor="true"] div[contenteditable="false"] > div > div:last-child {
-  background-color: var(--bg-panel) !important;
-}
-
-/* Etiquetas (Cambiar el celeste por gris claro para que no lastime la vista) */
+/* 3. Arreglamos los textos que casi no se ven */
 div[data-slate-editor="true"] div[contenteditable="false"] label,
-[class*="FieldLabel-root"] {
-  color: var(--text-muted) !important; 
+div[data-slate-editor="true"] div[contenteditable="false"] span {
+  color: var(--text-main) !important; 
   font-weight: 600 !important;
-  font-size: 12px !important;
-  letter-spacing: 0.5px !important;
 }
 
-/* Cajas de texto (Inputs) */
-div[data-slate-editor="true"] input {
+/* 4. Le devolvemos el fondo oscuro solo a las cajas de texto y botones */
+div[data-slate-editor="true"] div[contenteditable="false"] input {
   background-color: var(--bg-dark) !important;
   color: var(--text-main) !important;
   border: 1px solid var(--border-color) !important;
-  border-radius: 4px !important;
+  padding: 8px !important;
 }
 
-/* Botones de subida de archivos */
-div[data-slate-editor="true"] button {
-  background-color: var(--bg-dark) !important;
-  color: var(--text-main) !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 4px !important;
-  transition: all 0.2s ease;
-}
-
-div[data-slate-editor="true"] button:hover {
+div[data-slate-editor="true"] div[contenteditable="false"] button {
   background-color: var(--border-color) !important;
-  color: #ffffff !important;
-}
-
-/* Panel interior de subida de video ("Choose a file") */
-div[data-slate-editor="true"] div[class*="FileWidget"],
-div[data-slate-editor="true"] div[class*="ImageWidget"] {
-  background-color: var(--bg-dark) !important;
-  border: 1px dashed var(--border-color) !important;
-  border-radius: 6px !important;
+  color: var(--text-main) !important;
 }
