@@ -72,12 +72,8 @@ const config = {
               slug = documentPath;
             }
 
-            // 3. LA REGLA DE ORO: Si la ruta termina en "/index", lo borramos.
-            // Así, "directorios/index" se convierte en "directorios" y Sveltia lo encuentra.
-            if (slug.endsWith('/index')) {
-              slug = slug.replace(/\/index$/, '');
-            }
-
+            // 👇 ¡AQUÍ ESTÁ LA MAGIA! 👇 
+            // para encontrar los archivos dentro de tus subcarpetas.
             return `https://celebrated-tapioca-5bf719.netlify.app/admin/#/collections/${collectionName}/entries/${slug}`;
           },
         },
