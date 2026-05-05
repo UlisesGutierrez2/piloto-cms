@@ -26,7 +26,8 @@ collections:
     meta:
       path:
         widget: string
-        label: 'Path'
+        label: '📂 Directorio de guardado (Opcional)'
+        hint: 'Si este doc pertenece a una subsección, escribe su nombre (Ej: Bienvenida/nuevo-doc). Si lo dejas en "/", se guardará en la carpeta principal.'
         index_file: 'index'
     media_folder: "static/img/onboarding"
     public_folder: "/img/onboarding"
@@ -48,7 +49,8 @@ collections:
     meta:
       path:
         widget: string
-        label: 'Path'
+        label: '📂 Directorio de guardado (Opcional)'
+        hint: 'Si este doc pertenece a una subsección, escribe su nombre (Ej: Bienvenida/nuevo-doc). Si lo dejas en "/", se guardará en la carpeta principal.'
         index_file: 'index'
     media_folder: "static/img/lineamientos"
     public_folder: "/img/lineamientos"
