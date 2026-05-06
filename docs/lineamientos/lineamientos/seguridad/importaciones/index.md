@@ -5,6 +5,12 @@ Este lineamiento establece las directrices para la transferencia segura de infor
 
 Toda compartición de archivos sensibles deberá realizarse mediante canales seguros y aprobados por el área de Seguridad de la Información, asegurando el uso de mecanismos de cifrado, autenticación y control de acceso. Asimismo, se deberá verificar que la empresa receptora cumpla con estándares mínimos de seguridad y confidencialidad, formalizados mediante acuerdos como NDA (Non-Disclosure Agreement).
 
+![](/img/lineamientos/cifrado.jpg)
+
+
+
+
+
 
 
 Queda prohibido el envío de información sensible a través de medios no autorizados (como correos personales o plataformas no seguras). Además, toda transferencia deberá quedar registrada, incluyendo detalles como fecha, responsable, tipo de información y destinatario.
