@@ -5,8 +5,6 @@ import BotonCMS from '@site/src/components/BotonCMS';
 
 Bienvenido/a a nuestro equipo:
 
-![](/img/onboarding/vestido-verde.jpg)
-
 Nos alegra darte la bienvenida y acompañarte en el inicio de esta nueva etapa. A partir de hoy, pasas a formar parte de una organización que valora el compromiso, la colaboración y el crecimiento constante.
 
 Confiamos en que encontrarás un entorno de trabajo donde podrás desarrollar tus habilidades, aportar tus ideas y asumir nuevos desafíos. Creemos en el trabajo en equipo, el respeto mutuo y la mejora continua como pilares fundamentales para alcanzar nuestros objetivos.
@@ -20,5 +18,13 @@ Te deseamos mucho éxito en este camino que comenzamos juntos.
 ![](https://thumbs.dreamstime.com/z/bienvenida-la-ilustraci%C3%B3n-vectorial-de-concepto-equipo-oficina-trabajando-en-proyectos-empresariales-que-generen-ideas-178366559.jpg)
 
 <BotonCMS area="DevSecOps" coleccion="documentacion" />
+
+
+
+
+
+![](/img/onboarding/vestido-verde.jpg)
+
+
 
 ![](/img/onboarding/images-_2_.jpg)
