@@ -40,7 +40,7 @@ collections:
         # OMITIMOS "image" nativa de los botones
         buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"]
         # EL CANDADO FINAL: Bloquea el componente nativo de imagen
-        editor_components: ["custom-image", "video"]
+        editor_components: ["image-renderer-component", "video"]
   
   # --- 2. COLECCIÓN: LINEAMIENTOS ---
   - name: "lineamientos"
@@ -69,4 +69,4 @@ collections:
         # OMITIMOS "image" nativa de los botones
         buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"]
         # EL CANDADO FINAL: Bloquea el componente nativo de imagen
-        editor_components: ["custom-image", "video"]
+        editor_components: ["image-renderer-component", "video"]
