@@ -13,6 +13,8 @@ Nuestra cultura se basa en la confianza, el respeto y la colaboración. Valoramo
 
 Queremos que te sientas acompañado/a desde el primer día. Tendrás a tu disposición un equipo dispuesto a apoyarte en tu integración y a brindarte las herramientas necesarias para que puedas desarrollarte plenamente.
 
+![](/img/lineamientos/vestido-verde.jpg)
+
 Estamos seguros de que tu aporte será muy valioso y que juntos podremos alcanzar grandes objetivos.
 
 Te deseamos lo mejor en este nuevo comienzo.
