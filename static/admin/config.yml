@@ -5,8 +5,9 @@ backend:
   branch: main
 
 # Flujo de trabajo con Pull Requests
-publish_mode: editorial_workflow
+local_backend: true
 
+publish_mode: editorial_workflow
 # Imágenes globales
 media_folder: "static/img"
 public_folder: "/img"
@@ -31,10 +32,16 @@ collections:
         index_file: 'index'
     media_folder: "/static/img/onboarding"
     public_folder: "/img/onboarding"
-    fields:
+    fields: # <--- AHORA SÍ ESTÁ ALINEADO CORRECTAMENTE
       - {label: "Título", name: "title", widget: "string"}
-      - {label: "Cuerpo del texto", name: "body", widget: "markdown"}
-
+      - label: "Cuerpo del texto"
+        name: "body"
+        widget: "markdown"
+        # OMITIMOS "image" nativa de los botones
+        buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"]
+        # EL CANDADO FINAL: Bloquea el componente nativo de imagen
+        editor_components: ["custom-image", "video"]
+  
   # --- 2. COLECCIÓN: LINEAMIENTOS ---
   - name: "lineamientos"
     label: "Lineamientos"
@@ -54,6 +61,12 @@ collections:
         index_file: 'index'
     media_folder: "/static/img/lineamientos"
     public_folder: "/img/lineamientos"
-    fields:
+    fields: # <--- AHORA SÍ ESTÁ ALINEADO CORRECTAMENTE
       - {label: "Título", name: "title", widget: "string"}
-      - {label: "Cuerpo del texto", name: "body", widget: "markdown"}
+      - label: "Cuerpo del texto"
+        name: "body"
+        widget: "markdown"
+        # OMITIMOS "image" nativa de los botones
+        buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"]
+        # EL CANDADO FINAL: Bloquea el componente nativo de imagen
+        editor_components: ["custom-image", "video"]
