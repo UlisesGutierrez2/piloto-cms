@@ -14,3 +14,5 @@ Para que puedan entender mejor el rol, el alcance del puesto y sus principales r
 Cualquier duda que tengan, no duden en preguntar — estamos para ayudarnos entre todos 🤝.
 
 ¡Bienvenidos nuevamente! 💪🔥
+
+![](/img/onboarding/vestido-verde.jpg)
