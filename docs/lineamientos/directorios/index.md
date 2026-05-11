@@ -1,6 +1,7 @@
 ---
 title: Bienvenida
 ---
+![](/img/lineamientos/imagenseguridad.jpg)
 
 import BotonCMS from '@site/src/components/BotonCMS';
 
