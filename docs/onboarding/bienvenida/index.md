@@ -19,12 +19,6 @@ Te deseamos mucho éxito en este camino que comenzamos juntos.
 
 <BotonCMS area="DevSecOps" coleccion="documentacion" />
 
-
-
-
-
 ![](/img/onboarding/vestido-verde.jpg)
-
-
 
 ![](/img/onboarding/images-_2_.jpg)
