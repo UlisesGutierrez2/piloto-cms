@@ -24,3 +24,5 @@ Te deseamos lo mejor en este nuevo comienzo.
 ![](https://img.freepik.com/vector-premium/bienvenido-al-equipo-fondo-azul-ilustracion-vectorial_53295-895.jpg)
 
 <BotonCMS area="DevSecOps" coleccion="documentacion" />
+
+<ImageRenderer src="/img/lineamientos/vestido-verde.jpg" />
