@@ -1,9 +1,12 @@
 ---
 title: Compartición de Archivos Sensibles con Terceros
 ---
+
+import ImageRenderer from '@site/src/components/ImageRenderer';
+
 Este lineamiento establece las directrices para la transferencia segura de información sensible hacia terceros, con el objetivo de proteger la confidencialidad, integridad y disponibilidad de los datos de la organización.
 
-![Imagen de Seguridad](/img/lineamientos/cifrado.jpg)
+<ImageRenderer src="/img/lineamientos/cifrado.jpg" />
 
 Toda compartición de archivos sensibles deberá realizarse mediante canales seguros y aprobados por el área de Seguridad de la Información, asegurando el uso de mecanismos de cifrado, autenticación y control de acceso. Asimismo, se deberá verificar que la empresa receptora cumpla con estándares mínimos de seguridad y confidencialidad, formalizados mediante acuerdos como NDA (Non-Disclosure Agreement).
 
