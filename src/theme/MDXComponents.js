@@ -10,7 +10,10 @@ export default {
   // Mantenemos todo lo nativo de Docusaurus
   ...MDXComponents,
   
-  // Registramos tus componentes de forma global para que el Markdown los entienda
+  // 1. Esto permite que el Markdown entienda las etiquetas <ImageRenderer /> y <VideoPlayer />
   ImageRenderer,
   VideoPlayer,
+  
+  // 2. EL ESCUDO: Si alguien arrastra una foto y genera un ![](), esto fuerza a usar tu componente
+  img: ImageRenderer,
 };
