@@ -5,9 +5,9 @@ import BotonCMS from '@site/src/components/BotonCMS';
 
 ¡Te damos la bienvenida!
 
-Es un placer recibirte e invitarte a formar parte de nuestro equipo. Hoy comienzas una nueva etapa en la que esperamos que puedas crecer, aprender y contribuir con tu talento y entusiasmo.
-
 <VideoPlayer url="/img/lineamientos/videodevops.mp4" />
+
+Es un placer recibirte e invitarte a formar parte de nuestro equipo. Hoy comienzas una nueva etapa en la que esperamos que puedas crecer, aprender y contribuir con tu talento y entusiasmo.
 
 Nuestra cultura se basa en la confianza, el respeto y la colaboración. Valoramos las ideas, la iniciativa y el compromiso de cada persona, porque entendemos que el éxito se construye entre todos.
 
@@ -22,5 +22,3 @@ Te deseamos lo mejor en este nuevo comienzo.
 <ImageRenderer src="https://img.freepik.com/vector-premium/bienvenido-al-equipo-fondo-azul-ilustracion-vectorial_53295-895.jpg" alt="Imagen de bienvenida al equipo" />
 
 <BotonCMS area="DevSecOps" coleccion="documentacion" />
-
-<ImageRenderer src="/img/lineamientos/vestido-verde.jpg" alt="Vestido verde" />
