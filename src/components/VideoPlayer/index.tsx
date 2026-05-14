@@ -9,16 +9,6 @@ import Logger from '../../utils/logger';
 
 const Player = ReactPlayer as any
 
-/**
- * Componente para reproducir videos con soporte para recursos locales y plataformas externas
- * * @example
- * ```jsx
- * // Video local
- * <VideoPlayer url="/videos/tutorial.mp4" />
- * * // Video de Youtube
- * <VideoPlayer url="[https://www.youtube.com/watch?v=dQw4w9WgXcQ](https://www.youtube.com/watch?v=dQw4w9WgXcQ)" />
- * ```
- */
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
     url,
     height,
@@ -28,11 +18,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     loop = false,
     muted = false
 }) => {
-    // Estados para controlar que el video solo cargue en el navegador (no en el server)
     const [isClient, setIsClient] = useState<boolean>(false);
     const [isReady, setIsReady] = useState<boolean>(false);
 
-    // Truco anti-SSR
     useEffect(() => {
         setIsClient(true);
     }, []);
@@ -41,20 +29,19 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     const normalizedUrl = normalizeVideoUrl(url);
     const isExternal = normalizedUrl.startsWith('http');
 
-    // 2. Si aún no estamos en el navegador del usuario, detenemos el renderizado aquí
-    // Esto es vital para que no falle la compilación en Netlify
-    if (!isClient) return null;
-
-    // 3. LA MAGIA: Forzamos la ruta absoluta para que react-player no falle con rutas relativas
-    // Como ya pasamos el 'if (!isClient)', es 100% seguro usar el objeto 'window'
+    // 2. REGLA DE ORO: Llamamos a los Hooks siempre arriba, NUNCA después de un return
     const baseUrl = useBaseUrl(normalizedUrl);
-    const finalUrl = isExternal ? normalizedUrl : `${window.location.origin}${baseUrl}`;
 
-    // Obtener configuración especifica del player (usando finalUrl)
+    // 3. Armamos la URL de forma segura. Validamos si 'window' existe para que el servidor no falle.
+    const finalUrl = isExternal 
+        ? normalizedUrl 
+        : (typeof window !== 'undefined' ? `${window.location.origin}${baseUrl}` : baseUrl);
+
     const config = getPlayerConfig(finalUrl, autoplay, muted);
-
-    // Estilo para altura fija (si se especifica)
     const wrapperStyle = height ? { height } : undefined;
+
+    // 4. AHORA SÍ, si estamos en el servidor, detenemos el renderizado
+    if (!isClient) return null;
 
     return (
         <div
