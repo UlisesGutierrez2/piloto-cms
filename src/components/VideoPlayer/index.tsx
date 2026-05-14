@@ -31,15 +31,18 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     
     // 2. Ruta segura
     const baseUrl = useBaseUrl(normalizedUrl);
-    const finalUrl = isExternal ? normalizedUrl : baseUrl;
 
     if (!isClient) return null;
 
-    // 3. LA CLAVE: Configuramos forceVideo para que no ignore los MP4 locales
+    // 3. EL TRUCO DEFINITIVO: Si es local, le pasamos un array estructurado. 
+    // Esto obliga a React Player a crear la etiqueta <source src="..." type="video/mp4" />
+    const playerUrl = isExternal 
+        ? normalizedUrl 
+        : [{ src: baseUrl, type: 'video/mp4' }];
+
     const config = {
         youtube: { playerVars: { showinfo: 0, controls: 1 } },
         file: {
-            forceVideo: !isExternal, // Obliga a renderizar la etiqueta <video>
             attributes: { controlsList: 'nodownload' }
         }
     };
@@ -51,7 +54,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             {!isReady && <div className={styles.loadingMessage}>Cargando video...</div>}
 
             <Player
-                url={finalUrl}
+                url={playerUrl}
                 className={styles.reactPlayer}
                 width="100%"
                 height="100%"
