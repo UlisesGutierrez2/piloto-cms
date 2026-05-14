@@ -1,8 +1,9 @@
 ---
 title: Bienvenida
 ---
-
 import BotonCMS from '@site/src/components/BotonCMS';
+
+<VideoPlayer url="https://youtu.be/_NYQ5WNhOXE?si=8cS323utONYYbF7l" />
 
 ¡Te damos la bienvenida!
 
@@ -21,3 +22,5 @@ Te deseamos lo mejor en este nuevo comienzo.
 ![](https://img.freepik.com/vector-premium/bienvenido-al-equipo-fondo-azul-ilustracion-vectorial_53295-895.jpg)
 
 <BotonCMS area="DevSecOps" coleccion="documentacion" />
+
+<ImageRenderer src="/img/lineamientos/vestido-verde.jpg" />
