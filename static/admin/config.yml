@@ -30,7 +30,7 @@ collections:
         index_file: 'index'
     
     # Almacén específico para Onboarding (Alineado con producción)
-    media_folder: "static/videos/onboarding"
+    media_folder: "/static/videos/onboarding"
     public_folder: "/videos/onboarding"
     
     fields:
@@ -58,7 +58,7 @@ collections:
         index_file: 'index'
 
     # Almacén específico para Lineamientos
-    media_folder: "static/videos/lineamientos"
+    media_folder: "/static/videos/lineamientos"
     public_folder: "/videos/lineamientos"
     
     fields:
