@@ -3,7 +3,7 @@ title: Bienvenida
 ---
 import BotonCMS from '@site/src/components/BotonCMS';
 
-<VideoPlayer url="https://youtu.be/_NYQ5WNhOXE?si=8cS323utONYYbF7l" />
+<VideoPlayer url="/img/lineamientos/videodevops.mp4" />
 
 ¡Te damos la bienvenida!
 
