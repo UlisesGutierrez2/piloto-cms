@@ -1,72 +1,70 @@
-# Conexión a tu repositorio
+# Conexión al repositorio
 backend:
   name: github
   repo: UlisesGutierrez2/piloto-cms
   branch: main
 
-# Flujo de trabajo con Pull Requests
+# Flujo de trabajo editorial (Pull Requests)
 local_backend: true
-
 publish_mode: editorial_workflow
-# Imágenes globales
-media_folder: "static/img"
-public_folder: "/img"
+
+# Configuración global de medios (Fallback)
+media_folder: "static/videos"
+public_folder: "/videos"
 
 collections:
   # --- 1. COLECCIÓN: ONBOARDING ---
   - name: "onboarding"
     label: "Onboarding"
-    label_singular: "Document"
+    label_singular: "Documento de Onboarding"
     folder: "docs/onboarding"
     create: true
     extension: "md"
     format: "frontmatter"
-    # Soporte para tus múltiples niveles de subcarpetas
     nested:
       depth: 10
     meta:
       path:
         widget: string
         label: '📂 Directorio de guardado (Opcional)'
-        hint: 'Si este doc pertenece a una subsección, escribe su nombre (Ej: Bienvenida/nuevo-doc). Si lo dejas en "/", se guardará en la carpeta principal.'
         index_file: 'index'
-    media_folder: "/static/img/onboarding"
-    public_folder: "/img/onboarding"
-    fields: # <--- AHORA SÍ ESTÁ ALINEADO CORRECTAMENTE
+    
+    # Almacén específico para Onboarding (Alineado con producción)
+    media_folder: "static/videos/onboarding"
+    public_folder: "/videos/onboarding"
+    
+    fields:
       - {label: "Título", name: "title", widget: "string"}
       - label: "Cuerpo del texto"
         name: "body"
         widget: "markdown"
-        # OMITIMOS "image" nativa de los botones
         buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"]
-        # EL CANDADO FINAL: Bloquea el componente nativo de imagen
         editor_components: ["image-renderer-component", "video"]
-  
+
   # --- 2. COLECCIÓN: LINEAMIENTOS ---
   - name: "lineamientos"
     label: "Lineamientos"
-    label_singular: "Document"
+    label_singular: "Documento de Lineamientos"
     folder: "docs/lineamientos"
     create: true
     extension: "md"
     format: "frontmatter"
-    # Soporte para tus múltiples niveles de subcarpetas
     nested:
       depth: 10
     meta:
       path:
         widget: string
         label: '📂 Directorio de guardado (Opcional)'
-        hint: 'Si este doc pertenece a una subsección, escribe su nombre (Ej: Bienvenida/nuevo-doc). Si lo dejas en "/", se guardará en la carpeta principal.'
         index_file: 'index'
-    media_folder: "/static/img/lineamientos"
-    public_folder: "/img/lineamientos"
-    fields: # <--- AHORA SÍ ESTÁ ALINEADO CORRECTAMENTE
+
+    # Almacén específico para Lineamientos
+    media_folder: "static/videos/lineamientos"
+    public_folder: "/videos/lineamientos"
+    
+    fields:
       - {label: "Título", name: "title", widget: "string"}
       - label: "Cuerpo del texto"
         name: "body"
         widget: "markdown"
-        # OMITIMOS "image" nativa de los botones
         buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"]
-        # EL CANDADO FINAL: Bloquea el componente nativo de imagen
         editor_components: ["image-renderer-component", "video"]
