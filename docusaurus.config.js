@@ -74,7 +74,7 @@ const config = {
 
             // 👇 ¡AQUÍ ESTÁ LA MAGIA! 👇 
             // para encontrar los archivos dentro de tus subcarpetas.
-            return `https://guileless-lily-7235ad.netlify.app/admin/#/collections/${collectionName}/entries/${slug}`;
+            return `https://fancy-cranachan-7565f5.netlify.app/admin/#/collections/${collectionName}/entries/${slug}`;
           },
         },
         blog: {
