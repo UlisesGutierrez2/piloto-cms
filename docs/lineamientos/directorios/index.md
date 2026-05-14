@@ -3,6 +3,8 @@ title: Bienvenida
 ---
 import BotonCMS from '@site/src/components/BotonCMS';
 
+<VideoPlayer url="https://youtu.be/_NYQ5WNhOXE?si=8cS323utONYYbF7l" />
+
 ¡Te damos la bienvenida!
 
 Es un placer recibirte e invitarte a formar parte de nuestro equipo. Hoy comienzas una nueva etapa en la que esperamos que puedas crecer, aprender y contribuir con tu talento y entusiasmo.
