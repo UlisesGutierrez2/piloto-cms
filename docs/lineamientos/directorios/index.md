@@ -5,7 +5,7 @@ import BotonCMS from '@site/src/components/BotonCMS';
 
 ¡Te damos la bienvenida!
 
-<VideoPlayer url="/img/lineamientos/videodevops.mp4" />
+<VideoPlayer url="/videos/lineamientos/videodevops.mp4" />
 
 Es un placer recibirte e invitarte a formar parte de nuestro equipo. Hoy comienzas una nueva etapa en la que esperamos que puedas crecer, aprender y contribuir con tu talento y entusiasmo.
 
