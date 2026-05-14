@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import ReactPlayer from 'react-player';
-// @ts-ignore: Docusaurus inyecta este módulo dinámicamente en compilación
+// @ts-ignore
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 import {VideoPlayerProps} from './types';
-import {normalizeVideoUrl, getPlayerConfig} from './utils/utils';
+import {normalizeVideoUrl} from './utils/utils';
 import Logger from '../../utils/logger';
 
 const Player = ReactPlayer as any
@@ -25,29 +25,29 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         setIsClient(true);
     }, []);
 
-    // 1. Normalizamos lo que escupe el CMS
+    // 1. Limpiamos la URL
     const normalizedUrl = normalizeVideoUrl(url);
     const isExternal = normalizedUrl.startsWith('http');
-
-    // 2. REGLA DE ORO: Llamamos a los Hooks siempre arriba, NUNCA después de un return
+    
+    // 2. Ruta segura
     const baseUrl = useBaseUrl(normalizedUrl);
+    const finalUrl = isExternal ? normalizedUrl : baseUrl;
 
-    // 3. Armamos la URL de forma segura. Validamos si 'window' existe para que el servidor no falle.
-    const finalUrl = isExternal 
-        ? normalizedUrl 
-        : (typeof window !== 'undefined' ? `${window.location.origin}${baseUrl}` : baseUrl);
-
-    const config = getPlayerConfig(finalUrl, autoplay, muted);
-    const wrapperStyle = height ? { height } : undefined;
-
-    // 4. AHORA SÍ, si estamos en el servidor, detenemos el renderizado
     if (!isClient) return null;
 
+    // 3. LA CLAVE: Configuramos forceVideo para que no ignore los MP4 locales
+    const config = {
+        youtube: { playerVars: { showinfo: 0, controls: 1 } },
+        file: {
+            forceVideo: !isExternal, // Obliga a renderizar la etiqueta <video>
+            attributes: { controlsList: 'nodownload' }
+        }
+    };
+
+    const wrapperStyle = height ? { height } : undefined;
+
     return (
-        <div
-            className={`${styles.playerWrapper} ${height ? styles.fixedHeight : ''} ${className}`}
-            style={wrapperStyle}
-        >
+        <div className={`${styles.playerWrapper} ${height ? styles.fixedHeight : ''} ${className}`} style={wrapperStyle}>
             {!isReady && <div className={styles.loadingMessage}>Cargando video...</div>}
 
             <Player
