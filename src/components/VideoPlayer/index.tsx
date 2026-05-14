@@ -14,9 +14,9 @@ const Player = ReactPlayer as any
  * * @example
  * ```jsx
  * // Video local
- * < VideoPlayer url="/videos/tutorial.mp4" />
+ * <VideoPlayer url="/videos/tutorial.mp4" />
  * * // Video de Youtube
- * < VideoPlayer url="[https://www.youtube.com/watch?v=dQw4w9WgXcQ](https://www.youtube.com/watch?v=dQw4w9WgXcQ)" />
+ * <VideoPlayer url="[https://www.youtube.com/watch?v=dQw4w9WgXcQ](https://www.youtube.com/watch?v=dQw4w9WgXcQ)" />
  * ```
  */
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -37,12 +37,18 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         setIsClient(true);
     }, []);
 
-    // Normalizar la URL
+    // 1. Normalizamos lo que escupe el CMS
     const normalizedUrl = normalizeVideoUrl(url);
-
-    // Usar la magia de Docusaurus para rutas locales
     const isExternal = normalizedUrl.startsWith('http');
-    const finalUrl = isExternal ? normalizedUrl : useBaseUrl(normalizedUrl);
+
+    // 2. Si aún no estamos en el navegador del usuario, detenemos el renderizado aquí
+    // Esto es vital para que no falle la compilación en Netlify
+    if (!isClient) return null;
+
+    // 3. LA MAGIA: Forzamos la ruta absoluta para que react-player no falle con rutas relativas
+    // Como ya pasamos el 'if (!isClient)', es 100% seguro usar el objeto 'window'
+    const baseUrl = useBaseUrl(normalizedUrl);
+    const finalUrl = isExternal ? normalizedUrl : `${window.location.origin}${baseUrl}`;
 
     // Obtener configuración especifica del player (usando finalUrl)
     const config = getPlayerConfig(finalUrl, autoplay, muted);
@@ -50,17 +56,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     // Estilo para altura fija (si se especifica)
     const wrapperStyle = height ? { height } : undefined;
 
-    // Si aún no estamos en el navegador del usuario, devolvemos null
-    if (!isClient) return null;
-
     return (
         <div
             className={`${styles.playerWrapper} ${height ? styles.fixedHeight : ''} ${className}`}
             style={wrapperStyle}
-            >
-                {!isReady && <div className={styles.loadingMessage}>Cargando video...</div>}
+        >
+            {!isReady && <div className={styles.loadingMessage}>Cargando video...</div>}
 
-                <Player
+            <Player
                 url={finalUrl}
                 className={styles.reactPlayer}
                 width="100%"
@@ -69,10 +72,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 playing={autoplay}
                 loop={loop}
                 muted={muted}
-                config={config as any}
+                config={config}
                 onReady={() => setIsReady(true)}
                 onError={(e: any) => Logger.render('Error al cargar video:', e, 'error')} 
-                />
+            />
         </div>
     );
 };
