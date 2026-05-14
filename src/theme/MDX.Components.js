@@ -1,11 +1,16 @@
 import React from 'react';
-// Importamos los componentes por defecto de Docusaurus
+// Importamos los componentes originales de Docusaurus
 import MDXComponents from '@theme-original/MDXComponents';
-// Importamos tu componente personalizado
+
+// Importamos TUS componentes
 import ImageRenderer from '@site/src/components/ImageRenderer';
+import VideoPlayer from '@site/src/components/VideoPlayer';
 
 export default {
+  // Mantenemos todo lo nativo de Docusaurus
   ...MDXComponents,
-  // Le decimos que reemplace la etiqueta de imagen estándar por la tuya
-  img: ImageRenderer,
+  
+  // Registramos tus componentes de forma global para que el Markdown los entienda
+  ImageRenderer,
+  VideoPlayer,
 };
