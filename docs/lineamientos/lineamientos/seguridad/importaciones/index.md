@@ -1,8 +1,6 @@
 ---
 title: Compartición de Archivos Sensibles con Terceros
 ---
-![](/img/lineamientos/vestido-verde.jpg)
-
 Este lineamiento establece las directrices para la transferencia segura de información sensible hacia terceros, con el objetivo de proteger la confidencialidad, integridad y disponibilidad de los datos de la organización.
 
 ![Imagen de Seguridad](/img/lineamientos/cifrado.jpg)
