@@ -30,7 +30,7 @@ collections:
         index_file: 'index'
     
     # Almacén específico para Onboarding
-    media_folder: "static/videos/onboarding" # SIN barra inicial (Va a la raíz del repo)
+    media_folder: "/static/videos/onboarding" # SIN barra inicial (Va a la raíz del repo)
     public_folder: "/videos/onboarding"      # CON barra inicial (Va a la raíz de la web)
     
     fields:
@@ -58,7 +58,7 @@ collections:
         index_file: 'index'
 
     # Almacén específico para Lineamientos
-    media_folder: "static/videos/lineamientos" # SIN barra inicial (Va a la raíz del repo)
+    media_folder: "/static/videos/lineamientos" # SIN barra inicial (Va a la raíz del repo)
     public_folder: "/videos/lineamientos"      # CON barra inicial (Va a la raíz de la web)
     
     fields:
