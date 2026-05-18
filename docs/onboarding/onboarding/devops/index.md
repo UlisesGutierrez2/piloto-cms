@@ -7,6 +7,8 @@ A partir de ahora van a formar parte de un entorno donde la colaboración, la au
 
 En este equipo van a trabajar con prácticas y herramientas que buscan integrar desarrollo y operaciones, optimizando procesos, asegurando la calidad y facilitando despliegues rápidos y seguros 🔄. No hace falta que sepan todo desde el primer día: lo importante es la actitud de aprendizaje, la curiosidad y las ganas de aportar 📈.
 
+<VideoPlayer url="/videos/onboarding/ctrl-errores_parte1.mp4" />
+
 Para que puedan entender mejor el rol, el alcance del puesto y sus principales responsabilidades, les dejamos el siguiente video donde se explica en detalle todo lo que necesitan para empezar con una buena base 
 
 Cualquier duda que tengan, no duden en preguntar — estamos para ayudarnos entre todos 🤝.
