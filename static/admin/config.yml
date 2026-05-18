@@ -1,7 +1,6 @@
-# Conexión al repositorio
+# Conexión al repositorio mediante el puente de Netlify
 backend:
-  name: github
-  repo: UlisesGutierrez2/piloto-cms
+  name: git-gateway
   branch: main
 
 # Flujo de trabajo editorial (Pull Requests)
