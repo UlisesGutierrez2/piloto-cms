@@ -8,23 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  
   <link href="admin.css" rel="stylesheet">
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
+  
+  </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
 <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
+    // 🧹 Bloque de inicialización de Netlify Identity eliminado
 
     setTimeout(() => {
         if (window.CMS) {
@@ -40,7 +31,7 @@
 
           console.log("🚀 INICIANDO REGISTRO DE WIDGETS PERSONALIZADOS...");
 
-          // 1. WIDGET DE VIDEO FLEXIBLE
+          // 1. WIDGET DE VIDEO FLEXIBLE CON EXTRACCIÓN DE BLOB
           CMS.registerEditorComponent({
             id: "video", 
             label: "🎥 Insertar VideoPlayer", 
@@ -49,7 +40,6 @@
               {name: "local_file", label: "Opción B: Sube un video MP4", widget: "file", required: false}
             ],
             
-            // EL FIX VITAL: Quitamos ^ y $ para que no falle por saltos de línea ocultos
             pattern: /<VideoPlayer\s+url="([^"]+)"\s*\/>/,
             
             fromBlock: function(match) {
@@ -68,7 +58,30 @@
                 if (!finalUrl) return '';
 
                 let isYoutube = finalUrl.includes('youtube.com') || finalUrl.includes('youtu.be');
-                let previewSrc = isYoutube ? finalUrl : getAsset(finalUrl).toString();
+                let previewSrc = finalUrl;
+
+                if (!isYoutube) {
+                   let asset = getAsset(finalUrl);
+                   
+                   // HACK NINJA: Extraemos el archivo puro de la memoria y creamos el Blob manualmente
+                   if (asset && asset.fileObj) {
+                       previewSrc = window.URL.createObjectURL(asset.fileObj);
+                   } else if (asset) {
+                       previewSrc = asset.toString();
+                   }
+                   
+                   // SISTEMA DE GRACIA: Si no hay Blob en RAM, mostramos tarjeta elegante
+                   if (!previewSrc.startsWith('blob:') && !previewSrc.startsWith('http')) {
+                       let fileName = finalUrl.split('/').pop();
+                       return `
+                        <div style="padding: 20px; background: #161b22; border: 1px dashed #30363d; border-radius: 8px; text-align: center; margin: 16px 0;">
+                          <span style="color: #3fb950; font-family: monospace; font-size: 14px; display: block; margin-bottom: 8px;">✅ Archivo encolado con éxito</span>
+                          <span style="color: #58a6ff; font-weight: bold; display: block; margin-bottom: 8px;">${fileName}</span>
+                          <span style="color: #8b949e; font-size: 12px;">El reproductor de video se activará automáticamente al guardar el documento.</span>
+                        </div>
+                       `;
+                   }
+                }
 
                 if (isYoutube) {
                    return `<div style="padding:20px; background:#161b22; border:1px dashed #30363d; border-radius:8px; text-align:center; color:#8b949e;">🎥 <em>Vista previa de YouTube<br/><small>${previewSrc}</small></em></div>`; 
@@ -82,7 +95,7 @@
                 }
               } catch (err) {
                 console.error("❌ ERROR EN VIDEO PREVIEW:", err);
-                return `<div style="color:red;">Error en preview de video</div>`;
+                return `<div style="color:red; padding:10px; border:1px solid red;">Error renderizando preview de video</div>`;
               }
             }
           });
@@ -93,7 +106,6 @@
             label: "✅ Insertar ImageRenderer",
             fields: [{ name: "src", label: "Sube tu imagen", widget: "image" }],
             
-            // EL FIX VITAL: Quitamos ^ y $
             pattern: /<ImageRenderer\s+src="([^"]+)"\s*\/>/,
             
             fromBlock: function(match) { return { src: match[1] }; },
