@@ -1,12 +1,13 @@
-# Conexión al repositorio mediante el puente de Netlify
+# Conexión directa a GitHub usando tu proveedor OAuth de Netlify
 backend:
-  name: git-gateway
+  name: github
+  repo: UlisesGutierrez2/piloto-cms
   branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: /auth
 
-# Flujo de trabajo editorial (Pull Requests)
-# local_backend: true
+# Flujo de trabajo editorial (Habilita la creación de Pull Requests de forma nativa)
 publish_mode: editorial_workflow
-
 # Configuración global de medios (Fallback)
 media_folder: "static/videos" # SIN barra inicial
 public_folder: "/videos"      # CON barra inicial
