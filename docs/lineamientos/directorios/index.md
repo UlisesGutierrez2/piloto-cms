@@ -21,4 +21,8 @@ Te deseamos lo mejor en este nuevo comienzo.
 
 <ImageRenderer src="https://img.freepik.com/vector-premium/bienvenido-al-equipo-fondo-azul-ilustracion-vectorial_53295-895.jpg" />
 
-<BotonCMS area="DevSecOps" coleccion="documentacion" />
+<BotonCMS area="DevSecOps" coleccion="dcumentacion" />
+
+
+
+<ImageRenderer src="/videos/lineamientos/imagenseguridad.jpg" />
