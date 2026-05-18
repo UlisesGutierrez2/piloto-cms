@@ -11,12 +11,10 @@ Confiamos en que encontrarás un entorno de trabajo donde podrás desarrollar tu
 
 Durante tus primeros días, contarás con el apoyo de tu equipo y de las distintas áreas para facilitar tu integración. No dudes en hacer preguntas, proponer ideas y participar activamente desde el primer momento.
 
-<VideoPlayer url="/videos/onboarding/videodevops-1-.mp4" />
-
 Te deseamos mucho éxito en este camino que comenzamos juntos.
 
 ¡Bienvenido/a! 
 
-![](https://thumbs.dreamstime.com/z/bienvenida-la-ilustraci%C3%B3n-vectorial-de-concepto-equipo-oficina-trabajando-en-proyectos-empresariales-que-generen-ideas-178366559.jpg)
+
 
 <BotonCMS area="DevSecOps" coleccion="documentacion" />
