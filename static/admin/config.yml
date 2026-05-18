@@ -5,7 +5,7 @@ backend:
   branch: main
 
 # Flujo de trabajo editorial (Pull Requests)
-local_backend: true
+# local_backend: true
 publish_mode: editorial_workflow
 
 # Configuración global de medios (Fallback)
