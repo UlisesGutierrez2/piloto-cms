@@ -51,9 +51,8 @@
               let finalUrl = obj.youtube_url || obj.local_file || '';
               return finalUrl ? `<VideoPlayer url="${finalUrl}" />` : '';
             },
-            toPreview: function(obj, getAsset, fields) { 
+toPreview: function(obj, getAsset, fields) { 
               try {
-                console.log("=== 🟢 DIAGNÓSTICO VIDEO EJECUTÁNDOSE ===", obj);
                 let finalUrl = obj.youtube_url || obj.local_file || '';
                 if (!finalUrl) return '';
 
@@ -63,25 +62,42 @@
                 if (!isYoutube) {
                    let asset = getAsset(finalUrl);
                    
-                   // HACK NINJA: Extraemos el archivo puro de la memoria y creamos el Blob manualmente
+                   // Extraemos el Blob si está recién subido desde PC
                    if (asset && asset.fileObj) {
                        previewSrc = window.URL.createObjectURL(asset.fileObj);
                    } else if (asset) {
                        previewSrc = asset.toString();
                    }
-                   
-                   // SISTEMA DE GRACIA: Si no hay Blob en RAM, mostramos tarjeta elegante
-                   if (!previewSrc.startsWith('blob:') && !previewSrc.startsWith('http')) {
-                       let fileName = finalUrl.split('/').pop();
-                       return `
-                        <div style="padding: 20px; background: #161b22; border: 1px dashed #30363d; border-radius: 8px; text-align: center; margin: 16px 0;">
-                          <span style="color: #3fb950; font-family: monospace; font-size: 14px; display: block; margin-bottom: 8px;">✅ Archivo encolado con éxito</span>
-                          <span style="color: #58a6ff; font-weight: bold; display: block; margin-bottom: 8px;">${fileName}</span>
-                          <span style="color: #8b949e; font-size: 12px;">El reproductor de video se activará automáticamente al guardar el documento.</span>
-                        </div>
-                       `;
-                   }
                 }
+
+                if (isYoutube) {
+                   return `<div style="padding:20px; background:#161b22; border:1px dashed #30363d; border-radius:8px; text-align:center; color:#8b949e;">🎥 <em>Vista previa de YouTube<br/><small>${previewSrc}</small></em></div>`; 
+                } else {
+                   let fileName = finalUrl.split('/').pop();
+                   
+                   // EL TRUCO DEFINITIVO: Usamos onerror para alternar entre el video y la tarjeta
+                   return `
+                    <div style="margin: 16px 0;">
+                      <div style="padding: 10px; background: #161b22; border: 1px solid #30363d; border-radius: 8px;">
+                        <span style="color: #58a6ff; font-family: monospace; font-size: 12px; display: block; margin-bottom: 8px; text-align: center;">⚙️ Reproductor Activo</span>
+                        <video src="${previewSrc}" controls style="width: 100%; max-height: 400px; background: #000; border-radius: 4px;" 
+                               onerror="this.parentElement.style.display='none'; this.parentElement.nextElementSibling.style.display='block';">
+                        </video>
+                      </div>
+                      
+                      <div style="display: none; padding: 20px; background: #161b22; border: 1px dashed #30363d; border-radius: 8px; text-align: center;">
+                        <span style="color: #3fb950; font-family: monospace; font-size: 14px; display: block; margin-bottom: 8px;">✅ Archivo guardado</span>
+                        <span style="color: #58a6ff; font-weight: bold; display: block; margin-bottom: 8px;">${fileName}</span>
+                        <span style="color: #8b949e; font-size: 12px;">El reproductor se mostrará cuando Netlify termine de publicar los cambios.</span>
+                      </div>
+                    </div>
+                  `;
+                }
+              } catch (err) {
+                console.error("❌ ERROR EN VIDEO PREVIEW:", err);
+                return `<div style="color:red; padding:10px; border:1px solid red;">Error renderizando preview de video</div>`;
+              }
+            }
 
                 if (isYoutube) {
                    return `<div style="padding:20px; background:#161b22; border:1px dashed #30363d; border-radius:8px; text-align:center; color:#8b949e;">🎥 <em>Vista previa de YouTube<br/><small>${previewSrc}</small></em></div>`; 
