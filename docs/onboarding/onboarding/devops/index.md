@@ -13,4 +13,6 @@ Cualquier duda que tengan, no duden en preguntar — estamos para ayudarnos entr
 
 ¡Bienvenidos nuevamente! 💪🔥
 
-<VideoPlayer url="/videos/onboarding/videodevops-1-.mp4" />
+
+
+<VideoPlayer url="/videos/onboarding/videodevops.mp4" />
