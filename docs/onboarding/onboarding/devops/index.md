@@ -9,10 +9,8 @@ En este equipo van a trabajar con prácticas y herramientas que buscan integrar 
 
 Para que puedan entender mejor el rol, el alcance del puesto y sus principales responsabilidades, les dejamos el siguiente video donde se explica en detalle todo lo que necesitan para empezar con una buena base 
 
+<VideoPlayer url="/videos/onboarding/videodevops.mp4" />
+
 Cualquier duda que tengan, no duden en preguntar — estamos para ayudarnos entre todos 🤝.
 
 ¡Bienvenidos nuevamente! 💪🔥
-
-
-
-<VideoPlayer url="/videos/onboarding/videodevops.mp4" />
