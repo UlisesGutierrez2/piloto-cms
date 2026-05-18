@@ -9,14 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="admin.css" rel="stylesheet">
-  
-  </head>
+</head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
 <script>
-    // 🧹 Bloque de inicialización de Netlify Identity eliminado
-
     setTimeout(() => {
         if (window.CMS) {
           
@@ -31,7 +28,7 @@
 
           console.log("🚀 INICIANDO REGISTRO DE WIDGETS PERSONALIZADOS...");
 
-          // 1. WIDGET DE VIDEO FLEXIBLE CON EXTRACCIÓN DE BLOB
+          // 1. WIDGET DE VIDEO CON TRUCO ONERROR
           CMS.registerEditorComponent({
             id: "video", 
             label: "🎥 Insertar VideoPlayer", 
@@ -51,7 +48,7 @@
               let finalUrl = obj.youtube_url || obj.local_file || '';
               return finalUrl ? `<VideoPlayer url="${finalUrl}" />` : '';
             },
-toPreview: function(obj, getAsset, fields) { 
+            toPreview: function(obj, getAsset, fields) { 
               try {
                 let finalUrl = obj.youtube_url || obj.local_file || '';
                 if (!finalUrl) return '';
@@ -98,22 +95,6 @@ toPreview: function(obj, getAsset, fields) {
                 return `<div style="color:red; padding:10px; border:1px solid red;">Error renderizando preview de video</div>`;
               }
             }
-
-                if (isYoutube) {
-                   return `<div style="padding:20px; background:#161b22; border:1px dashed #30363d; border-radius:8px; text-align:center; color:#8b949e;">🎥 <em>Vista previa de YouTube<br/><small>${previewSrc}</small></em></div>`; 
-                } else {
-                   return `
-                    <div style="padding: 10px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; margin: 16px 0;">
-                      <span style="color: #58a6ff; font-family: monospace; font-size: 12px; display: block; margin-bottom: 8px; text-align: center;">⚙️ Vista Previa Local Activa</span>
-                      <video src="${previewSrc}" controls style="width: 100%; max-height: 400px; background: #000; border-radius: 4px;"></video>
-                    </div>
-                  `;
-                }
-              } catch (err) {
-                console.error("❌ ERROR EN VIDEO PREVIEW:", err);
-                return `<div style="color:red; padding:10px; border:1px solid red;">Error renderizando preview de video</div>`;
-              }
-            }
           });
 
           // 2. EL COMPONENTE DE IMAGEN FLEXIBLE
@@ -128,7 +109,6 @@ toPreview: function(obj, getAsset, fields) {
             toBlock: function(obj) { return `<ImageRenderer src="${obj.src || ''}" />`; },
             toPreview: function(obj, getAsset, fields) {
               try {
-                console.log("=== 🟢 DIAGNÓSTICO IMAGEN EJECUTÁNDOSE ===", obj);
                 if(!obj.src) return '';
                 let imgSrc = getAsset(obj.src).toString();
 
