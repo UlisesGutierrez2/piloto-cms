@@ -11,4 +11,10 @@ Queda prohibido el envío de información sensible a través de medios no autori
 
 El incumplimiento de este lineamiento podrá derivar en sanciones disciplinarias y/o acciones legales según la gravedad del incidente.
 
+
+
+
+
+<VideoPlayer url="/videos/lineamientos/videoplayback.mp4" />
+
 ![](https://images.openai.com/static-rsc-4/MJ-oG6LxS1HfoeMY0NhF_GV6vqkgMucEayYVGi9lgIg8kUD3HnSl_HWy4DyE2fROn0_YNn7Oa18CaCID0eMtarGwoBuijWxb_3g3nEoSCJfZAhI1aaf3Kf1JMwD0s0fn1CPp9YZWDs3CjWcRNpPdcpk4-hstb9oGJCbf7zmE0dmWji4ommJs9NqQ8RUA_Dyd?purpose=fullsize)
