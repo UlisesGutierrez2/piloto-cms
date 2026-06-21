@@ -15,8 +15,6 @@ Te deseamos mucho éxito en este camino que comenzamos juntos.
 
 ¡Bienvenido/a! 
 
-![](https://thumbs.dreamstime.com/z/bienvenida-la-ilustraci%C3%B3n-vectorial-de-concepto-equipo-oficina-trabajando-en-proyectos-empresariales-que-generen-ideas-178366559.jpg)
+
 
 <BotonCMS area="DevSecOps" coleccion="documentacion" />
-
-![](/img/onboarding/images-_2_.jpg)
